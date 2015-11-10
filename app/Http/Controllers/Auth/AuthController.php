@@ -82,6 +82,7 @@ class AuthController extends Controller {
 
 		$email = $request->only('email');
 		$user=Code::get_user_activated($email['email']);
+	
 		
 
 		$credentials = $request->only('email', 'password');
@@ -94,13 +95,16 @@ class AuthController extends Controller {
 			{
 				$realtor = Code::get_user_realtor($email['email']);
 				//dd($realtor);
-				if ($realtor->id_role==2 && $request->input('realtor')){
+				if ($realtor->id_role==3 && $request->input('realtor')){
 						
 			return redirect()->to('/realtor')->with(['message' => 'Вы вошли как риэлтор']);
 
 		}
-		else if ($realtor->id_role==1){
-		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент','error_realtor'=>'Вы не являетесь риэлтором']);
+		else if ($realtor->id_role==2){
+		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент','error_realtor'=>'Вы не являетесь риэлтором. Нужно подтвеерждение администратора']);
+	}
+	else if ($realtor->id_role==1){
+		return redirect()->to('/admin')->with(['admin'=>'Вы вошли как админ']);
 	}
 
 					}

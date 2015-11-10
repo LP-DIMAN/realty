@@ -19,6 +19,7 @@ Route::any('confirmation', 'AuthController@postRegister');
 Route::get('auth/activate','ConfirmationController@activate');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::any('realtor', 'RealtorController@index');
+Route::any('admin', 'AdminController@index');
 
 
 

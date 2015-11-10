@@ -19,6 +19,7 @@
 	<![endif]-->
 </head>
 <body>
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -42,17 +43,33 @@
 						<li><a href="/auth/login">Войти</a></li>
 						<li><a href="/auth/register">Зарегистрироваться</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
-					@else
+						
+						@elseif (Auth::user()->id==1)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout">Выйти</a></li>
 							</ul>-->
 						</li>
-							<li><a href="/contacts">Наши контакты</a></li>
+							
+							<li><a href="/contacts">Модерация</a></li>
 						<li><a href="/private_cabinet">Личный кабинет</a></li>
+						<li><a href="/contacts">Наши контакты</a></li>
+						<li><a href="/auth/logout">Выйти</a></li>
+					@else
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
+							<!--<ul class="dropdown-menu" role="menu">
+								<li><a href="/auth/logout">Выйти</a></li>
+							</ul>-->
+						</li>
+							
+						<li><a href="/private_cabinet">Личный кабинет</a></li>
+						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
 					@endif
+
 				</ul>
 			</div>
 		</div>
