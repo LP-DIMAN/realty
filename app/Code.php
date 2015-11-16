@@ -21,7 +21,7 @@ class Code extends Model
     //Получаем ид роли по email
     public static function get_user_realtor($email)
     {
-        $results = DB::select('select id_role from users where email = ?', [$email]);
+        $results = DB::select('select * from users where email = ?', [$email]);
         $arr[]=array();
         foreach ($results as $key) {
             $arr = $key;

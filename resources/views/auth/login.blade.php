@@ -70,15 +70,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="realtor"> Войти как риэлтор
-									</label>
-								</div>
-							</div>
-						</div>
+						
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">

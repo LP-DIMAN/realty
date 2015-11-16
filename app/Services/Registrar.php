@@ -22,9 +22,8 @@ class Registrar implements RegistrarContract {
 			'phone' => 'required|min:5|max:13',
 			'email' => 'required|email|min:5|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
-			'client'=>'sometimes|accepted',
-			'realtor'=>'sometimes|accepted'
-
+			
+			
 		]);
 	}
 
@@ -38,18 +37,7 @@ class Registrar implements RegistrarContract {
 	{
 		
 		
-		if (Request::input('client')){
-		return User::create([
-			'surname' => $data['surname'],
-			'name' => $data['name'],
-			'patronymic' => $data['patronymic'],
-			'phone' => $data['phone'],
-			'email' => $data['email'],
-			'id_role'=>2,
-			'password' => bcrypt($data['password']),
-		]);
-	}
-	elseif (Request::input('realtor')){
+		if (Request::input('realtor')){
 		return User::create([
 			'surname' => $data['surname'],
 			'name' => $data['name'],
@@ -58,6 +46,17 @@ class Registrar implements RegistrarContract {
 			'email' => $data['email'],
 			'id_role'=>2,
 			'confirmation_realtor'=>1,
+			'password' => bcrypt($data['password']),
+		]);
+	}
+	else{
+		return User::create([
+			'surname' => $data['surname'],
+			'name' => $data['name'],
+			'patronymic' => $data['patronymic'],
+			'phone' => $data['phone'],
+			'email' => $data['email'],
+			'id_role'=>2,
 			'password' => bcrypt($data['password']),
 		]);
 	}

@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/OpenServer/domains/realty/app/Http/Controllers/CodeController.php</file>
+            <file>file:/C:/OpenServer/domains/realty/app/Http/Controllers/RealtorController.php</file>
+            <file>file:/C:/OpenServer/domains/realty/app/Code.php</file>
             <file>file:/C:/OpenServer/domains/realty/app/Http/Controllers/Auth/AuthController.php</file>
-            <file>file:/C:/OpenServer/domains/realty/app/Services/Registrar.php</file>
         </group>
     </open-files>
 </project-private>

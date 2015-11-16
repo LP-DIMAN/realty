@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User;
+
 
 class RealtorController extends Controller {
 
@@ -12,8 +12,20 @@ class RealtorController extends Controller {
 	 *
 	 * @return Response
 	 */
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+		
+	}
 	public function index()
 	{
+		$user = User::Can('REALTOR');
+
+		if($user==null){
+			return redirect('/home');
+		}
+	
 		return view('realtor');
 	}
 

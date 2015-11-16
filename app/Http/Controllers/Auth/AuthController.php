@@ -7,11 +7,9 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\Code;
-use App\User;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\CodeController;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use App\Http\Controllers\Auth;
+
 
 
 class AuthController extends Controller {
@@ -86,26 +84,36 @@ class AuthController extends Controller {
 		
 
 		$credentials = $request->only('email', 'password');
-		 if (isset($user->activated) && $user->activated==0)
+		 if (isset($user->activated) && $user->activated==0){
 			return redirect()->to('/auth/login')->with(['fail' => 
                             'Вы не подтвердили свой email.Перейдите по ссылке,которая пришла вам на почту']);
+                                          }
 
 						
-					if ($this->auth->attempt($credentials, $request->has('remember','realtor')))
+                                if ($this->auth->attempt($credentials, $request->has('remember','realtor')))
 			{
 				$realtor = Code::get_user_realtor($email['email']);
-				//dd($realtor);
-				if ($realtor->id_role==3 && $request->input('realtor')){
+				
+				if ($realtor->id_role==3 && $realtor->confirmation_realtor==2)
+				{
 						
 			return redirect()->to('/realtor')->with(['message' => 'Вы вошли как риэлтор']);
+				}
 
+		else if ($realtor->id_role==2 && $realtor->confirmation_realtor==0)
+		{
+		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент']);
 		}
-		else if ($realtor->id_role==2){
-		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент','error_realtor'=>'Вы не являетесь риэлтором. Нужно подтвеерждение администратора']);
-	}
-	else if ($realtor->id_role==1){
-		return redirect()->to('/admin')->with(['admin'=>'Вы вошли как админ']);
-	}
+
+		else if ($realtor->id_role==2 && $realtor->confirmation_realtor==1)
+		{
+			return redirect()->to('/home')->with(['error_realtor'=>'Вы не являетесь риэлтором. Нужно подтверждение администратора','client'=>'Вы вошли как клиент']);
+		}
+
+		else if ($realtor->id_role==1)
+		{
+			return redirect()->to('/admin')->with(['admin'=>'Вы вошли как админ']);
+		}
 
 					}
 

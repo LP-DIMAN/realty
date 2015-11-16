@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration {
 			$table->boolean('activated')->default(0); 
 			$table->string('phone', 13);
 			$table->integer('id_role');
-			$table->integer('isAdmin')->default(0);
 			$table->integer('confirmation_realtor')->default(0);
 
 			

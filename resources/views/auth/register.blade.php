@@ -42,7 +42,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Телефон</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+								<input type="text" class="form-control" name="phone" value="{{ old('phone') }}" pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" placeholder="+7xxxxxxxxxx">
 							</div>
 						</div>
 
@@ -67,14 +67,8 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-4 control-label">Клиент</label>
-							<div class="col-md-6">
-								<input type="checkbox" class="form-control" name="client">
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-md-4 control-label">Риэлтор</label>
-							<div class="col-md-6">
+							<div class="col-md-1">
 								<input type="checkbox" class="form-control" name="realtor">
 							</div>
 						</div>
