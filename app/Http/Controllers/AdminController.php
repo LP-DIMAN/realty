@@ -24,7 +24,7 @@ class AdminController extends Controller {
 	public function index()
 	{
 		$data['admin'] = Admin::get_confirmation_realtor();
-	
+		$data['status_advert'] = Admin::get_status_adverts();
 		return view('admin',$data);
 
 	}
@@ -38,9 +38,21 @@ class AdminController extends Controller {
 			Admin::get_success_or_cancel_realtor(2,3,$_GET['success']);
 			return redirect()->to('/admin')->with(['realtor_success'=>'Вы добавили пользователя в риэлторы']);
 		}
-			else if ($request->input('cancel')){
+			else if ($request->input('cancel'))
+			{
 			Admin::get_success_or_cancel_realtor(0,2,$_GET['cancel']);
 			return redirect()->to('/admin')->with(['realtor_cancel'=>'Вы оставили пользователя обычным клиентом']);
+		
+	}
+	if ($request->input('success_advert')){
+			
+			Admin::update_status_advert($_GET['success_advert'],1);
+			return redirect()->to('/admin')->with(['realtor_success'=>'Статья успешно добавлена на сайт']);
+		}
+			else if ($request->input('cancel_advert'))
+			{
+			Admin::delete_advert($_GET['cancel_advert']);
+			return redirect()->to('/admin')->with(['realtor_cancel'=>'Статья не прошла модерацию']);
 		
 	}
 			

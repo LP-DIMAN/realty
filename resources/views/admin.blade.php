@@ -52,7 +52,24 @@
 					<button type="submit" class="btn btn-danger" value="{{$administrator->id}}" name="cancel">Отклонить</button><br>
 					
 					@endforeach
-				  
+				  @foreach($status_advert as $status)
+
+        
+            <div class="row">
+                    
+                    <div class="table table-bordered">
+                    <strong>{{$status->title}}</strong><br>
+                    {{$status->description}}<br>
+                    <span style="margin-left:721px"><strong>Цена: </strong>{{$status->price}} рублей</span>
+                    </div>
+                    
+                    </div>
+                    <button type="submit" class="btn btn-success" name="success_advert" value="{{$status->id_realty}}">Подтвердить </button>
+                    <button type="submit" class="btn btn-danger" value="{{$status->id_realty}}" name="cancel_advert">Отклонить</button><br>
+                    
+                    @endforeach
+                  
+
 					</form>
 				</div>
 			</div>

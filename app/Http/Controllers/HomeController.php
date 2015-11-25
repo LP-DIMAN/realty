@@ -1,6 +1,6 @@
 <?php 
 namespace App\Http\Controllers;
-
+use App\Adverts;
 class HomeController extends Controller {
 
 	/*
@@ -21,7 +21,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
 	/**
@@ -31,7 +31,10 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$data['adverts'] = Adverts::get_adverts();
+
+		
+		return view('home',$data);
 		abort(404);
 	}
 

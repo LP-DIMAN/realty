@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
 Route::get('contacts', 'ContactsController@index');
@@ -21,6 +21,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::any('realtor', 'RealtorController@index');
 Route::any('admin', 'AdminController@index');
 Route::get('admin_suc','AdminController@get');
+Route::get('create_advert','AdvertController@index');
+Route::any('adverts','AdvertController@create_advert');
 
 
 

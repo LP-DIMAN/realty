@@ -46,7 +46,15 @@
 
 
 				<div class="panel-body">
-					
+                <div class="row">
+				    @foreach ($adverts as $advert)
+                    <div class="table table-bordered">
+                    <strong>{{$advert->title}}</strong><br>
+                    {{$advert->description}}<br>
+                    <span style="margin-left:721px"><strong>Цена: </strong>{{$advert->price}} рублей</span>
+                    </div>
+                    @endforeach
+                    </div>
 				</div>
 			</div>
 		</div>

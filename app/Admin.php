@@ -39,5 +39,31 @@
 	
 
 	}
+	protected static function get_status_adverts()
+	{
+
+	
+		$admin = DB::select("select * from adverts where status = 0");
+		$arr = array();
+		foreach ($admin as $administrator) {
+			$arr[] = $administrator;
+
+		}
+		return $arr;
+	
+
+	}
+	protected static function update_status_advert($id_realty,$status)
+	{
+
+	
+		DB::update("update adverts set status = $status where id_realty = $id_realty");
+	}
+	protected static function delete_advert($id_realty)
+	{
+
+	
+		DB::delete("delete from adverts where id_realty = $id_realty");
+	}
 }
 ?>

@@ -21,9 +21,9 @@
 
 
 				<div class="panel-body">
-					Адрес
-					Телефон
-					<script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=SmZuk37JUydSt1CPZxE_a332FrLfUWdU&width=900&height=400&lang=ru_RU&sourceType=constructor"></script>
+				Таганрог ул. Энгельса 1 <br>
+					Телефон: +79298527868
+					<script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=dHdmp6hd0lOseVeZ64XmeEDjM1NdqYL8&width=920&height=400&lang=ru_RU&sourceType=constructor"></script>
 				</div>
 			</div>
 		</div>

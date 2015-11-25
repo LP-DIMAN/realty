@@ -22,7 +22,7 @@ class isAdmin {
 			$arr = $administrator;
 
 		}
-		if ($arr->id_role!==1){
+		if ($arr->id_role !==1){
 			return redirect('/home');
 		}
 		return $next($request);

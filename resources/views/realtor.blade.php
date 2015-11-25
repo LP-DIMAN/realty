@@ -18,6 +18,18 @@
                 </div>
             </div>
         @endif
+         @if (Session::has('advert'))
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                     <div class="alert alert-success" role="alert">                   
+                         <button class="close" aria-label="Close" data-dismiss="alert" type="button">                       
+                             <span aria-hidden="true">×</span>                   
+                         </button>
+                         {{ Session::get('advert') }}
+                     </div>
+                </div>
+            </div>
+        @endif
         
 				<div class="panel-body">
 					

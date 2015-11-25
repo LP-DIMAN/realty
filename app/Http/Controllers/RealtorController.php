@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 
 
+
 class RealtorController extends Controller {
 
 	/**
@@ -16,6 +17,7 @@ class RealtorController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+		
 		
 	}
 	public function index()

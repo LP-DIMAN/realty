@@ -84,7 +84,7 @@ class AuthController extends Controller {
 		
 
 		$credentials = $request->only('email', 'password');
-		 if (isset($user->activated) && $user->activated==0){
+		 if (isset($user->activated) && $user->activated == 0){
 			return redirect()->to('/auth/login')->with(['fail' => 
                             'Вы не подтвердили свой email.Перейдите по ссылке,которая пришла вам на почту']);
                                           }
@@ -94,23 +94,23 @@ class AuthController extends Controller {
 			{
 				$realtor = Code::get_user_realtor($email['email']);
 				
-				if ($realtor->id_role==3 && $realtor->confirmation_realtor==2)
+				if ($realtor->id_role == 3 && $realtor->confirmation_realtor == 2)
 				{
 						
 			return redirect()->to('/realtor')->with(['message' => 'Вы вошли как риэлтор']);
 				}
 
-		else if ($realtor->id_role==2 && $realtor->confirmation_realtor==0)
+		else if ($realtor->id_role == 2 && $realtor->confirmation_realtor == 0)
 		{
 		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент']);
 		}
 
-		else if ($realtor->id_role==2 && $realtor->confirmation_realtor==1)
+		else if ($realtor->id_role == 2 && $realtor->confirmation_realtor == 1)
 		{
 			return redirect()->to('/home')->with(['error_realtor'=>'Вы не являетесь риэлтором. Нужно подтверждение администратора','client'=>'Вы вошли как клиент']);
 		}
 
-		else if ($realtor->id_role==1)
+		else if ($realtor->id_role == 1)
 		{
 			return redirect()->to('/admin')->with(['admin'=>'Вы вошли как админ']);
 		}

@@ -7,6 +7,7 @@
 	<title>Сайт недвижимости</title>
 
 	<link href="/css/app.css" rel="stylesheet">
+	<script type="text/javascript" src="/script.js"></script> 
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -44,7 +45,7 @@
 						<li><a href="/auth/register">Зарегистрироваться</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						
-						@elseif (Auth::user()->id==1)
+						@elseif (Auth::user()->id_role==1)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
@@ -52,11 +53,24 @@
 							</ul>-->
 						</li>
 							
-							<li><a href="/contacts">Модерация</a></li>
+						
+						<li><a href="/admin">Личный кабинет</a></li>
+						<li><a href="/contacts">Наши контакты</a></li>
+						<li><a href="/auth/logout">Выйти</a></li>
+						
+						@elseif (Auth::user()->id_role==2)
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
+							<!--<ul class="dropdown-menu" role="menu">
+								<li><a href="/auth/logout">Выйти</a></li>
+							</ul>-->
+						</li>
+							
+						
 						<li><a href="/private_cabinet">Личный кабинет</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
-					@else
+					@elseif (Auth::user()->id_role == 3)
 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
@@ -64,7 +78,7 @@
 								<li><a href="/auth/logout">Выйти</a></li>
 							</ul>-->
 						</li>
-							
+						<li><a href="/create_advert">Создать объявление</a></li>
 						<li><a href="/private_cabinet">Личный кабинет</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
