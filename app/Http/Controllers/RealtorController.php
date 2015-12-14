@@ -2,7 +2,9 @@
 
 
 use App\Http\Controllers\Controller;
+use Auth;
 use App\User;
+use App\Adverts;
 
 
 
@@ -24,11 +26,12 @@ class RealtorController extends Controller {
 	{
 		$user = User::Can('REALTOR');
 
-		if($user==null){
+		if($user == null){
 			return redirect('/home');
 		}
-	
-		return view('realtor');
+		$data['clients'] = User::get_clients();
+		$data['adverts'] = Adverts::get_adverts_realtor(Auth::user()->id);
+		return view('realtor',$data);
 	}
 
 	

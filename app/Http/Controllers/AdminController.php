@@ -47,12 +47,12 @@ class AdminController extends Controller {
 	if ($request->input('success_advert')){
 			
 			Admin::update_status_advert($_GET['success_advert'],1);
-			return redirect()->to('/admin')->with(['realtor_success'=>'Статья успешно добавлена на сайт']);
+			return redirect()->to('/admin')->with(['realtor_success'=>'Объявление успешно добавлена на сайт']);
 		}
 			else if ($request->input('cancel_advert'))
 			{
 			Admin::delete_advert($_GET['cancel_advert']);
-			return redirect()->to('/admin')->with(['realtor_cancel'=>'Статья не прошла модерацию']);
+			return redirect()->to('/admin')->with(['realtor_cancel'=>'Объявление не прошло модерацию']);
 		
 	}
 			

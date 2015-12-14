@@ -70,7 +70,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Описание</label>
 							<div class="col-md-1">
-								<textarea name="description"cols="70" rows="10"></textarea>
+								<textarea name="description"cols="70" rows="10" wrap="soft | hard"></textarea>
 							</div>
 						</div>
 

@@ -23,6 +23,13 @@ Route::any('admin', 'AdminController@index');
 Route::get('admin_suc','AdminController@get');
 Route::get('create_advert','AdvertController@index');
 Route::any('adverts','AdvertController@create_advert');
+Route::get('true_advert','HomeController@remember_adverts');
+Route::get('private_cabinet_client','ClientController@index');
+Route::post('add_comment','ClientController@edit_advert');
+Route::get('delete_advert','ClientController@delete_advert');
+Route::get('cross_advert','ClientController@cross_advert');
+Route::get('lead_advert','ClientController@lead_advert');
+
 
 
 
@@ -39,4 +46,6 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Роуты сброса пароля
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
 

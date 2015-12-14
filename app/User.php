@@ -49,6 +49,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
          }
        
 	}
-
+	protected  function get_clients()
+	{
+		$result = DB::select("SELECT * FROM users where id_role = 2 and activated = 1");
+		return $result;
+	}
 
 }

@@ -23,7 +23,8 @@ class CreateAdvertsTable extends Migration {
 			$table->text('description');
 			$table->integer('new');  
 			$table->integer('price');
-			$table->integer('status')->default(0);  
+			$table->integer('status')->default(0);
+			$table->datetime('date');
 			
 		});
 	}

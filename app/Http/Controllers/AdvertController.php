@@ -50,16 +50,18 @@ else
 		$description = $request->input('description');
 		$type_realty = $request->input('type_realty');
 		$room = $request->input('room');
+		$date = date('Y-m-d H:i:s');
+		
 		$realtor =Auth::user()->id;
 	
 
 		if ($request->input('new')){
-	DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1)");
+	DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new,date) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1,'$date')");
 		
 	}
 	else
 	{
-		DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price) values($realtor,'$type_realty','$title','$room','$city','$description',$price)");
+		DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,date) values($realtor,'$type_realty','$title','$room','$city','$description',$price,'$date')");
 		
 	}
 		return redirect()->to('/realtor')->with(['advert'=>'Объявление отправлено на проверку']);

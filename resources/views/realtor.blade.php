@@ -31,8 +31,50 @@
             </div>
         @endif
         
-				<div class="panel-body">
-					
+			
+				
+        <div class="row">
+            <div class="col-lg-4">
+            <h3>Клиенты</h3><br>
+
+            @foreach($clients as $client)
+             <div class="table table-bordered">
+                <strong>ФИО</strong><br>
+                {{$client->surname}} {{$client->name}} {{$client->patronymic}}<br>
+                <strong>Предпочтения</strong><br>
+                <strong> Контакты </strong><br>
+                {{$client->phone}}
+               </div>
+
+            @endforeach
+
+
+
+            </div>
+            <div class="col-lg-4">
+            <h3> Рабочий стол </h3>
+
+
+
+            </div>
+            <div class="col-lg-4">
+
+            <h3> Объявления </h3><br>
+            @foreach($adverts as $advert)
+             <div class="table table-bordered">
+               <strong>{{$advert->title}}</strong><br>
+                    <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
+                    <strong>Количество комнат: </strong>{{$advert->quantity_room}}<br>
+                    <strong>Город: </strong>{{$advert->city}}<br>
+                    {{$advert->description}}<br>
+                    <span style="margin-left:721px"><strong>Цена: </strong>{{$advert->price}} рублей</span>
+                    <hr>
+                    </div>
+            @endforeach;
+
+            </div>
+        </div><!-- .container-->
+   
 				</div>
 			</div>
 		</div>

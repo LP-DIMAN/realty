@@ -59,13 +59,17 @@
                     
                     <div class="table table-bordered">
                     <strong>{{$status->title}}</strong><br>
-                    {{$status->description}}<br>
+                    <strong>Тип недвижимости: </strong>{{$status->type}}<br>
+                    <strong>Количество комнат: </strong>{{$status->quantity_room}}<br>
+                    <strong>Город: </strong>{{$status->city}}<br>
+                   <div> {{$status->description}}<br> </div>
                     <span style="margin-left:721px"><strong>Цена: </strong>{{$status->price}} рублей</span>
-                    </div>
-                    
-                    </div>
                     <button type="submit" class="btn btn-success" name="success_advert" value="{{$status->id_realty}}">Подтвердить </button>
                     <button type="submit" class="btn btn-danger" value="{{$status->id_realty}}" name="cancel_advert">Отклонить</button><br>
+                    </div>
+                     
+                    </div>
+                   
                     
                     @endforeach
                   

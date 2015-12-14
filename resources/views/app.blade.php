@@ -4,10 +4,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" value="{{ csrf_token() }}">
 	<title>Сайт недвижимости</title>
 
 	<link href="/css/app.css" rel="stylesheet">
-	<script type="text/javascript" src="/script.js"></script> 
+	<link href="/css/style.css" rel="stylesheet">
+	
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -45,7 +47,7 @@
 						<li><a href="/auth/register">Зарегистрироваться</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						
-						@elseif (Auth::user()->id_role==1)
+						@elseif (Auth::user()->id_role == 1)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
@@ -58,7 +60,7 @@
 						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
 						
-						@elseif (Auth::user()->id_role==2)
+						@elseif (Auth::user()->id_role == 2)
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
@@ -67,7 +69,7 @@
 						</li>
 							
 						
-						<li><a href="/private_cabinet">Личный кабинет</a></li>
+						<li><a href="/private_cabinet_client">Личный кабинет</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
 					@elseif (Auth::user()->id_role == 3)
@@ -79,7 +81,7 @@
 							</ul>-->
 						</li>
 						<li><a href="/create_advert">Создать объявление</a></li>
-						<li><a href="/private_cabinet">Личный кабинет</a></li>
+						<li><a href="/realtor">Личный кабинет</a></li>
 						<li><a href="/contacts">Наши контакты</a></li>
 						<li><a href="/auth/logout">Выйти</a></li>
 					@endif
@@ -94,6 +96,11 @@
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link rel='stylesheet' href='fullcalendar/fullcalendar.css' />
+	<script src='fullcalendar/lib/moment.min.js'></script>
+	<script src='fullcalendar/fullcalendar.js'></script>
+	<script src="/js/script.js"></script> 
 </body>
 </html>

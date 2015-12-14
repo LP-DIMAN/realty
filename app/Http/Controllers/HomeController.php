@@ -1,6 +1,9 @@
 <?php 
 namespace App\Http\Controllers;
 use App\Adverts;
+use Auth;
+
+use Illuminate\Http\Request;
 class HomeController extends Controller {
 
 	/*
@@ -29,13 +32,34 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
+
+	public function ajax()
+{
+    return $this->isXmlHttpRequest();
+}
 	public function index()
 	{
 		$data['adverts'] = Adverts::get_adverts();
-
 		
+		//dd($data['check_advert'] = Adverts::check_advert(Auth::user()->id,4));
 		return view('home',$data);
 		abort(404);
+	}
+
+	public function remember_adverts(Request $request)
+	{
+		if ($request->input('remember'))
+		{
+			$id_advert = $_GET['remember'];
+			
+			$client = Auth::user()->id;
+			Adverts::remember_advert($client,$id_advert);
+		
+			
+		}
+				return redirect()->to('/home');
+
+
 	}
 
 }
