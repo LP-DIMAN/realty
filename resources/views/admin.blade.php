@@ -56,8 +56,11 @@
 
         
             <div class="row">
-                    
+                    <div class='advert'>
                     <div class="table table-bordered">
+                     @if ($status->image !==null)
+                     <img src='{{$status->image}}' width="200" class="image_avatar"><br>
+                     @endif
                     <strong>{{$status->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$status->type}}<br>
                     <strong>Количество комнат: </strong>{{$status->quantity_room}}<br>
@@ -67,7 +70,7 @@
                     <button type="submit" class="btn btn-success" name="success_advert" value="{{$status->id_realty}}">Подтвердить </button>
                     <button type="submit" class="btn btn-danger" value="{{$status->id_realty}}" name="cancel_advert">Отклонить</button><br>
                     </div>
-                     
+                     </div>
                     </div>
                    
                     

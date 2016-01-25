@@ -24,7 +24,7 @@ class AdminController extends Controller {
 	public function index()
 	{
 		$data['admin'] = Admin::get_confirmation_realtor();
-		$data['status_advert'] = Admin::get_status_adverts();
+		$data['status_advert'] = Admin::where('status','=',0)->get();
 		return view('admin',$data);
 
 	}

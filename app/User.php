@@ -33,6 +33,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+//Проверка прав доступа
+
 	public  static function Can($priv, $id_user = null)
 	{		
 		$a='privs2roles.id_priv';
@@ -49,10 +51,37 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
          }
        
 	}
+	//Получаем  список клиентов и их предпочтения
 	protected  function get_clients()
 	{
-		$result = DB::select("SELECT * FROM users where id_role = 2 and activated = 1");
+		$result = DB::select("SELECT * FROM users as u left JOIN clients2adverts as c on u.id = c.id_client 
+			left JOIN adverts as a ON c.id_adverts = a.id_realty
+          WHERE c.lead = 1 and u.activated = 1 or u.id_role = 2");
+		$arr = [];
+		foreach ($result as $client) {
+			$arr["$client->surname $client->name $client->patronymic"][] = [
+			"id"=>$client->id,
+			"id_realtor"=>$client->id_realtor,
+			"id_realty"=>$client->id_realty,
+			"type"=>$client->type,
+			"title" => $client->title,
+			"quantity_room" =>$client->quantity_room,
+			"city"=>$client->city,
+			"description"=>$client->description,
+			"new"=>$client->new,
+			"price"=>$client->price,
+			"status"=>$client->status,
+			"image"=>$client->image,
+			"date"=>$client->date] ;  
+		}
+		return $arr;
+	}
+// Получаем всех подтвержденных риэлторов
+	protected  function get_realtors()
+	{
+		$result = DB::select("SELECT * FROM users where id_role = 3 and activated = 1 and confirmation_realtor = 2 ");
 		return $result;
 	}
+
 
 }

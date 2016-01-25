@@ -24,6 +24,7 @@ class CreateAdvertsTable extends Migration {
 			$table->integer('new');  
 			$table->integer('price');
 			$table->integer('status')->default(0);
+			$table->text('image',256)->nullable();
 			$table->datetime('date');
 			
 		});

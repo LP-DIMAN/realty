@@ -6,6 +6,15 @@
 	class Admin extends Model
 	{
 	
+	protected $table = 'adverts';
+
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['id_realtor','id_realty','type','phone', 'title', 'quantity_room','city','description','new','price','status','date'];
+
 	protected static function get_confirmation_realtor(){
 
 		$confirmation_realtor = DB::select('select * from users where confirmation_realtor = ?', [1]);
