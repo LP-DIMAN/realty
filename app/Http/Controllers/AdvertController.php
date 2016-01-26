@@ -18,12 +18,15 @@ class AdvertController extends Controller {
      */
     public function __construct()
     {
+        //Проверка на авторизацию
+        
         $this->middleware('auth');
         
         
     }
     public function index()
     {
+        //Проверка прав доступа
         $user = User::Can('REALTOR');
 
         if($user == null){
@@ -33,6 +36,7 @@ class AdvertController extends Controller {
         return view('advert');
     }
 
+    //Создание объявления
     public function create_advert(Request $request)
     {
     $validator = Adverts::validator($request->all());
@@ -53,6 +57,7 @@ class AdvertController extends Controller {
         $date = date('Y-m-d H:i:s');
         $img = $request->file('image');
         //dd($img);
+        //Если изображение существует, проверяем и перемещаем
         if ($img !== null){
         if ($img->isValid())
         {
@@ -65,22 +70,32 @@ class AdvertController extends Controller {
      
         $realtor =Auth::user()->id;
 
+
+// Большой блок проверок при создании объявления
         if ($type_realty == 'дом' && $room == 0){
           return redirect()->to('/create_advert')->with(['error_advert'=>'Дом или квартира не могут иметь 0 комнат']);
         }
         if ($type_realty == 'квартира' && $room == 0){
           return redirect()->to('/create_advert')->with(['error_advert'=>'Дом или квартира не могут иметь 0 комнат']);
         }
-        if ($request->input('new')){
+          if ($type_realty == 'участок' && $room > 0){
+          return redirect()->to('/create_advert')->with(['error_advert'=>'Участок не может иметь комнат']);
+        }
+
+        if ($request->input('new') && $img !==null){
     DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new,image,date) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1,'$image','$date')");
         
     }
-    if($img !==null)
+     if ($request->input('new') && $img == null){
+    DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new,image,date) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1,null,'$date')");
+        
+    }
+    if(!$request->input('new')&& $img !==null)
     {
         DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,image,date) values($realtor,'$type_realty','$title','$room','$city','$description',$price,'$image','$date')");
         
     }
-    else
+    if(!$request->input('new') && $img ==null)
     {
          DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,image,date) values($realtor,'$type_realty','$title','$room','$city','$description',$price,null,'$date')");
     }

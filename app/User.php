@@ -56,7 +56,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	{
 		$result = DB::select("SELECT * FROM users as u left JOIN clients2adverts as c on u.id = c.id_client 
 			left JOIN adverts as a ON c.id_adverts = a.id_realty
-          WHERE c.lead = 1 and u.activated = 1 or u.id_role = 2");
+          WHERE c.lead = 1 and u.activated = 1 and u.id_role = 2");
 		$arr = [];
 		foreach ($result as $client) {
 			$arr["$client->surname $client->name $client->patronymic"][] = [

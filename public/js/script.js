@@ -176,7 +176,8 @@ $('.comment').click(function(){
 	var id_comment = $(this).val();
 
 	console.log(id_comment);
-	$(this).html("<textarea rows=10 cols=70 name='add_comment' class='add_comment' maxlengh='256' autofocus> </textarea><br><button type='submit' name='add' class='add btn btn-primary'> Добавить сообщение</button>");
+	//$(this).remove();
+	$(this).next('.empty_comment').html("<br><textarea rows=10 cols=70 name='add_comment' class='add_comment btn btn-primary' maxlengh='256' autofocus> </textarea><br><button type='submit' name='add' class='add btn btn-primary'> Добавить сообщение</button>");
 	
 	$('.add').click(function()
 	{
@@ -229,10 +230,16 @@ $('.comment').click(function(){
 	console.log(id_advert);
 
 
-	$(this).siblings('.advert').toggleClass('empty del-cross');
-	$(this).siblings('.leadd').remove();
-	$(this).remove()
+	$(this).siblings('.advert').toggleClass('del-cross');
+	//$(this).siblings('.leadd').remove();
+	//$(this).remove()
+	if ($(this).siblings('.advert').hasClass('del-cross')){
 	$.get('cross_advert',{id_advert:id_advert});
+}
+else
+{
+	$.get('delete_cross_advert',{id_advert:id_advert});
+}
 
 	});
 
@@ -245,12 +252,23 @@ $('.comment').click(function(){
 
 	console.log(id_advert);
 
-	$(this).siblings('.advert').toggleClass('empty holder');
-	$(this).siblings('.cross').remove();
-	$(this).remove();
+	$(this).siblings('.advert').toggleClass('holder');
+	//$(this).siblings('.cross').remove();
+	//$(this).remove();
+	
+	
+
+	if ($(this).siblings('.advert').hasClass('holder')){
 	$.get('lead_advert',{id_advert:id_advert});
+}
+else
+{
+	$.get('delete_lead_advert',{id_advert:id_advert});
+}
 
 	});
+
+
 
 
 // Поделиться ссылкой на объявление

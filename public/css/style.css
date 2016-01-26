@@ -2,19 +2,19 @@
 body{
     font-family: Arial;
 }
-
+/*Перечеркивание объявлений*/
 del.cross {
     display:inline-block; /* запрещает перенос текста на следующую строку */
     text-decoration:none;
     position:relative;
 }
-
+/*Перечеркивание объявлений*/
 .del-cross {
     display:block;
     position:relative;
     overflow:hidden; /* запрещает обтекать другие блоки */
 }
-
+/*Перечеркивание объявлений*/
 del.cross:before,
 .del-cross:before {
     content:'';
@@ -32,12 +32,37 @@ del.cross:before,
 
 
 
+
+/*Параметры поиска */
+
+
+.options_search{
+
+    font-family: Georgia;
+    font-size: 21px;
+}
+/*Важное объявление */
 .holder {
-background-color:yellow;
+background:yellow;
 
 }
+/*новое объявление*/
 #new{
     float: right;
+}
+/*Заголовок объявления*/
+.title_advert{
+
+       margin: 1em 0 0.5em 0;
+    font-weight: 600;
+    font-family: 'Titillium Web', sans-serif;
+    position: relative;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+    font-size: 22px;
+    line-height: 40px;
+    color: #355681;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(53,86,129, 0.3);
 }
 .red{
     color:red;
@@ -54,6 +79,7 @@ background-color:yellow;
 }
 .advert{
     position: relative;
+    border: 2px solid #A2AFB1;
 }
 .description{
     
@@ -91,7 +117,7 @@ background-color:yellow;
     background: #2CA2BF;
 }
 #slider{
-    background: #18bc9c;
+    background: #FF0000;
 }
 #footer{
     height: 200px;

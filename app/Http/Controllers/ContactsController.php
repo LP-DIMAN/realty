@@ -12,6 +12,7 @@ class ContactsController extends Controller {
 	 */
 	public function index()
 	{
+		//Выводим страницу контактов
 	 return view('contacts');
 	}
 

@@ -52,7 +52,7 @@
 
                 <div class="panel-body">
                 <div class="search">
-                    Параметры поиска:
+                    <strong class='options_search'>Параметры поиска:</strong>
                     <form id='search'>
                     
                         <select name="type" id="type">
@@ -61,20 +61,20 @@
                             <option value="Участок">Участок</option>
 
                         </select>
-                        Город: <input type="text" name="city" id="city"><br>
+                        Город: <input type="text" name="city" id="city"><br><br>
                
 
                     
                         <input type="checkbox" name='new' id='new'><label for="new">Новое жилье</label><br>
                         Количество комнат: <br>
                             
-                             От <input type="number" name="min_rooms" min='0' value="0">
-                             До <input type="number" name="max_rooms" max='21' value="10"><br>
+                             От <input type="number" name="min_rooms" min='0' max='21' value="0">
+                             До <input type="number" name="max_rooms" min='0' max='21' value="10"><br>
                                 <label for="minCost">Цена:</label><br>
 
 От <input type="text" id="minCost" name="min_price" value="50000000 " min='0'/>
 
-До <input type="text" id="maxCost" name="max_price" value="100000000 "/>рублей<br>
+До <input type="text" id="maxCost" name="max_price" min='0'  value="100000000 "/>рублей<br>
 
 <div id="slider"></div>
 
@@ -100,7 +100,7 @@
                     @if ($advert->image !==null)
                      <img src='{{$advert->image}}' width="200" class="image_avatar"><br>
                      @endif
-               <strong>{{$advert->title}}</strong><br>
+               <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
                     <strong>Количество комнат: </strong>{{$advert->quantity_room}}<br>
                     <strong>Город: </strong>{{$advert->city}}<br>
@@ -127,11 +127,12 @@
                     @if ($advert->image !==null)
                      <img src='{{$advert->image}}' width="300" class="image_avatar"><br>
                      @endif
-                    <strong>{{$advert->title}}</strong><br>
+                    <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
                     <strong>Количество комнат: </strong>{{$advert->quantity_room}}<br>
                     <strong>Город: </strong>{{$advert->city}}<br>
                    <strong class='description'> Описание: </strong> {{$advert->description}}<br>
+                   
                     @if (!Auth::guest())
                     <strong> Телефон: </strong>{{$advert->phone}}<br>
                     <strong> Риэлтор: </strong>{{$advert->surname}} {{$advert->name}}<br>
@@ -164,6 +165,9 @@
                         @endif
                   
                     <span style="margin-left:721px"><strong>Цена: </strong>{{$advert->price}} рублей</span>
+                    @if ($advert->new == 1)
+                    <img src='/images/new.png' width="100">
+                   @endif
                     </div>
                     </div>
                     @endforeach

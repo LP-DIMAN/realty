@@ -161,4 +161,5 @@ protected static function view_recommended_adverts($id_client)
 	$result = DB::select("SELECT * from adverts as a inner join recommended_adverts as r on a.id_realty = r.id_advert where id_client = '$id_client'");
 	return $result;
 }
+
 }

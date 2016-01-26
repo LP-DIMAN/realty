@@ -29,6 +29,8 @@ Route::get('private_cabinet_client','ClientController@index');
 Route::post('add_comment','ClientController@edit_advert');
 Route::get('delete_advert','ClientController@delete_advert');
 Route::get('cross_advert','ClientController@cross_advert');
+Route::get('delete_lead_advert','ClientController@delete_lead_advert');
+Route::get('delete_cross_advert','ClientController@delete_cross_advert');
 Route::get('lead_advert','ClientController@lead_advert');
 Route::any('events','ClientController@events');
 Route::any('search_adverts','HomeController@search_adverts');

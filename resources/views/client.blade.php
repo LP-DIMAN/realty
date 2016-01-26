@@ -18,7 +18,7 @@
                 
         @if ($advert->lead == 1)
 
-             <div class='holder'>
+             <div class='advert holder'>
 
              
 
@@ -63,12 +63,14 @@
                     
 
                       <button type="submit" value="{{$advert->id_realty}}" name="comment" class="comment btn btn-primary"> Добавить комментарий</button>
+                       <span class="empty_comment"> </span>
                     <button type="submit" value="{{$advert->id_realty}}" name="link" class='link btn btn-warning'>Поделиться ссылкой</button>
                     <button type="submit" class="delete_advert btn btn-danger" value="{{$advert->id_realty}}" name='delete_advert'> Удалить объявление </button>
                         
 
                     @else
                     <button type="submit" value="{{$advert->id_realty}}" name="comment" class="comment btn btn-primary"> Добавить комментарий</button>
+                    <span class="empty_comment"> </span>
                     <button type="submit" value="{{$advert->id_realty}}" name="cross" class="cross btn btn-info"> Перечеркнуть </button>
                    <button type="submit" value="{{$advert->id_realty}}" name="lead" class='leadd btn btn-success'>Обвести</button>
                    <button type="submit" value="{{$advert->id_realty}}" name="link" class='link btn btn-warning'>Поделиться ссылкой</button>

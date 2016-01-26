@@ -99,17 +99,17 @@ class AuthController extends Controller {
 						
 			return redirect()->to('/realtor')->with(['message' => 'Вы вошли как риэлтор']);
 				}
-
+				//Если пользователь обычный клиент
 		else if ($realtor->id_role == 2 && $realtor->confirmation_realtor == 0)
 		{
 		return redirect()->to('/home')->with(['client'=>'Вы вошли как клиент']);
 		}
-
+				//Если пользователь пока неподтвержденный риэлтор
 		else if ($realtor->id_role == 2 && $realtor->confirmation_realtor == 1)
 		{
 			return redirect()->to('/home')->with(['error_realtor'=>'Вы не являетесь риэлтором. Нужно подтверждение администратора','client'=>'Вы вошли как клиент']);
 		}
-
+			//Если пользователь админ
 		else if ($realtor->id_role == 1)
 		{
 			return redirect()->to('/admin')->with(['admin'=>'Вы вошли как админ']);

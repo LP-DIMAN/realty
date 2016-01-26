@@ -55,10 +55,10 @@
                 @for($i = 0;$i < count($advert);$i++)
 
                 <input type="hidden" value="{{$advert[$i]['id']}}" name='id_client' class="id_client">
-               Название:{{$advert[$i]['title']}} <br>
+              <!-- Название:{{$advert[$i]['title']}} <br>-->
                Город: {{$advert[$i]['city']}} <br>
                 Количество комнат:{{$advert[$i]['quantity_room']}} <br>
-               Описание: {{$advert[$i]['description']}} <br>
+              <!-- Описание: {{substr($advert[$i]['description'],0,60)}} <br>-->
                Цена: {{$advert[$i]['price']}}
 
                 </p>
@@ -102,7 +102,7 @@
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
                     <strong>Количество комнат: </strong>{{$advert->quantity_room}}<br>
                     <strong>Город: </strong>{{$advert->city}}<br>
-                    {{$advert->description}}<br>
+                    {{substr($advert->description,0,60)}}...<br>
                     <span ><strong>Цена: </strong>{{$advert->price}} рублей</span>
                     <hr>
                     </div>

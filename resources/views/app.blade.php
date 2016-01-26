@@ -57,7 +57,7 @@
 						
 						@elseif (Auth::user()->id_role == 1)
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} &nbsp;{{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout">Выйти</a></li>
 							</ul>-->
@@ -70,7 +70,7 @@
 						
 						@elseif (Auth::user()->id_role == 2)
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} &nbsp; {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout">Выйти</a></li>
 							</ul>-->
@@ -83,7 +83,7 @@
 					@elseif (Auth::user()->id_role == 3)
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong>{{ Auth::user()->name }} &nbsp; {{ Auth::user()->surname }}</strong> <!--<span class="caret"></span>--></a>
 							<!--<ul class="dropdown-menu" role="menu">
 								<li><a href="/auth/logout">Выйти</a></li>
 							</ul>-->

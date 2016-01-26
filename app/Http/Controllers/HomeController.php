@@ -41,13 +41,14 @@ class HomeController extends Controller {
 
     public function index()
     {
-
+        // Выводим обычные и рекомендованные объявления
         $data['adverts'] = Adverts::get_adverts();
         if (!Auth::guest()){
         $data['recommended_adverts'] = Adverts::view_recommended_adverts(Auth::user()->id);
       }
-        //dd($data['check_advert'] = Adverts::check_advert(Auth::user()->id,4));
+       
         return view('home',$data);
+        //Если страница не найдена, выводим 404 ошибку
         abort(404);
     }
 
