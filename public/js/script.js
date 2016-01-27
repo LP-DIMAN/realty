@@ -26,7 +26,12 @@ $(document).ready(function(){
 
  });
 
-    $('.image_avatar').resizable();
+    $('.image_avatar').resizable(
+    {
+    	animate:true,
+    }
+
+    	);
  
     // Перетаскивание объявлений
     $(".adverts_realtor").draggable(
@@ -51,7 +56,8 @@ $(document).ready(function(){
     $(".desctop").droppable({
       drop: function(event, ui) {
         if ($(this).hasClass("ui-state-highlight")) {
-          event.preventDefault();
+         // event.preventDefault();
+         ui.draggable.appendTo('.clients');
           return;
         }
         $(this)
@@ -399,7 +405,7 @@ $("input#maxCost").change(function(){
 						{
 
 							result.append("<div class='advert'> <div class='table table-bordered'>" +
-
+							"<img src=" + obj[i].image +" class='image_avatar img-responsive img-rounded' id='resizable'><br>"+
 						 "Объявление добавлено <em>" + obj[i].date + "</em> <br>" +
                     	"<strong>" + obj[i].title + "</strong><br>" +
                     "<strong>Тип недвижимости: </strong>" + obj[i].type + 
@@ -408,7 +414,7 @@ $("input#maxCost").change(function(){
                    "<br><strong> Описание: </strong><br>" + obj[i].description  + 
              
                   
-               	"<br><span style='margin-left:721px'><strong>Цена: </strong>" + obj[i].price + " рублей</span>"+
+               	"<br><span class='col-md-offset-9'><strong>Цена: </strong>" + obj[i].price + " рублей</span>"+
 				"</div> </div><br />" );
 
 						}

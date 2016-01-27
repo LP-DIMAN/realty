@@ -97,9 +97,9 @@ protected $table = 'adverts';
 		
 	}
 	//Изменение встречи
-	protected static function update_event($id_client,$date_event,$comment)
+	protected static function update_event($id_client,$date_event,$comment,$id_event)
 	{
-		$add = DB::insert("UPDATE events set date_event = '$date_event', comment = '$comment' where id_client = $id_client");
+		$add = DB::insert("UPDATE events set date_event = '$date_event', comment = '$comment' where id_client = $id_client and id=$id_event");
 		
 		
 	}

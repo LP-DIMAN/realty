@@ -31,7 +31,11 @@ del.cross:before,
 }
 
 
-
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
 
 /*Параметры поиска */
 
@@ -71,11 +75,12 @@ background:yellow;
 }
 #all_search{
     float: right;
+
 }
 .image_avatar{
     float: left;
-    margin-left:5px; 
-
+    
+    cursor: pointer;
 }
 .advert{
     position: relative;
@@ -119,18 +124,23 @@ background:yellow;
 #slider{
     background: #FF0000;
 }
-#footer{
-    height: 200px;
-    background: yellow;
+.footer{
+    height: 40px;
+    background: #2c3e50;
 }
 .realtor_adverts{
     overflow: scroll;
     height: 550px;
 }
 .recommended_adverts{
-    background: #eee;
+    background: #2c3e50;
+    color: #fff;
 }
 .recommended_title{
    font-size: 23px;
    font-family: Georgia;
+}
+.copyright{
+    color:#fff;
+    text-align: center;
 }

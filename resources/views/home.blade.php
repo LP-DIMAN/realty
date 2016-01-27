@@ -1,5 +1,22 @@
 @extends('app')
+<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+<div id="wowslider-container1">
+<div class="ws_images"><ul>
+        <li><img src="data1/images/03.jpg" alt="дом" title="дом" id="wows1_0"/></li>
+        <li><img src="data1/images/20140207_1901517.jpg" alt="дом" title="дом" id="wows1_1"/></li>
+        <li><img src="data1/images/24147.jpg" alt="дом" title="дом" id="wows1_2"/></li>
+        <li><img src="data1/images/domzkurpucha.jpg" alt="дом" title="дом" id="wows1_3"/></li>
+        <li><img src="data1/images/home1600x900001.jpg" alt="дом" title="дом" id="wows1_4"/></li>
+        <li><img src="data1/images/houses_in_the_alps_6.jpg" alt="дом" title="дом" id="wows1_5"/></li>
+        <li><img src="data1/images/kartinki24_home_0085.jpg" alt="дом" title="дом" id="wows1_6"/></li>
+        <li><img src="data1/images/komw_architektura_01.jpg" alt="дом" title="дом" id="wows1_7"/></li>
+        <li><img src="data1/images/rsz_0_b48fc_a2daad04_xxl.jpg" alt="дом" title="дом" id="wows1_8"/></li>
+        <li><a href="http://wowslider.com"><img src="data1/images/world___india_beautiful_houses_in_goa_066066_.jpg" alt="дом" title="дом" id="wows1_9"/></a></li>
+        <li><img src="data1/images/_3.jpg" alt="красивые дома3" title="красивые дома3" id="wows1_10"/></li>
+    </ul></div>
 
+</div>  
+<!-- END WOW-->
 @section('content')
 <div id='all_search'>
 <input type="search" name="all_search" class="all_search" placeholder='Поиск по сайту'>
@@ -55,13 +72,13 @@
                     <strong class='options_search'>Параметры поиска:</strong>
                     <form id='search'>
                     
-                        <select name="type" id="type">
+                        <select name="type" id="type" class="form-control">
                             <option value="Дом">Дом</option>
                             <option value="Квартира">Квартира</option>
                             <option value="Участок">Участок</option>
 
                         </select>
-                        Город: <input type="text" name="city" id="city"><br><br>
+                        Город: <input type="text" name="city" id="city" class="form-control">
                
 
                     
@@ -72,11 +89,11 @@
                              До <input type="number" name="max_rooms" min='0' max='21' value="10"><br>
                                 <label for="minCost">Цена:</label><br>
 
-От <input type="text" id="minCost" name="min_price" value="50000000 " min='0'/>
+От <input type="number" id="minCost" name="min_price" value="50000000 " min='0'/>
 
-До <input type="text" id="maxCost" name="max_price" min='0'  value="100000000 "/>рублей<br>
+До <input type="number" id="maxCost" name="max_price" min='0'  value="100000000 "/>&nbsp;рублей<br>
 
-<div id="slider"></div>
+<div id="slider"></div><br>
 
                          <button type="button" id="search_adverts" class="btn btn-success">Показать объяления</button>
                     
@@ -95,10 +112,10 @@
                      <strong class='recommended_title'>Рекомендованные объявления</strong> 
             @foreach($recommended_adverts as $advert)
              <div class="table table-bordered">
-             <div class="adverts_realtor">
+             <div class="recomended_realtor">
               Объявление добавлено <em> {{$advert->date}} </em> <br>
                     @if ($advert->image !==null)
-                     <img src='{{$advert->image}}' width="200" class="image_avatar"><br>
+                     <img src='{{$advert->image}}' class="image_avatar img-responsive img-rounded" id='resizable'><br>
                      @endif
                <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
@@ -106,7 +123,17 @@
                     <strong>Город: </strong>{{$advert->city}}<br>
                     {{$advert->description}}<br>
                     
-                    <span ><strong>Цена: </strong>{{$advert->price}} рублей</span>
+                    <span ><strong>Цена: </strong>{{$advert->price}} рублей</span><br>
+                     @if (Auth::user()->id_role == 2 && App\Adverts::check_advert(Auth::user()->id,$advert->id_realty) == null )
+                
+                    
+                        <button type="submit"  value="{{$advert->id_realty}}" name="remember" class="remember btn btn-info"> Запомнить </button><br>
+                   
+                         @elseif (Auth::user()->id_role == 2 && App\Adverts::check_advert(Auth::user()->id,$advert->id_realty))
+                
+                    
+                        <button type="submit"  value="{{$advert->id_realty}}" name="remember" class="remember btn btn-primary" disabled='disabled'> Уже связывался </button><br>
+                        @endif
                     <hr>
                     </div>
                     </div>
@@ -121,11 +148,11 @@
 
 
                     @foreach ($adverts as $advert)
-                    <div class='advert'>
+                    <div class='advert col-xs-12'>
                     <div class="table table-bordered">
                     Объявление добавлено <em> {{$advert->date}} </em> <br>
                     @if ($advert->image !==null)
-                     <img src='{{$advert->image}}' width="300" class="image_avatar"><br>
+                     <img src='{{$advert->image}}'  class="image_avatar img-responsive img-rounded" id='resizable'><br>
                      @endif
                     <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
@@ -164,7 +191,7 @@
             
                         @endif
                   
-                    <span style="margin-left:721px"><strong>Цена: </strong>{{$advert->price}} рублей</span>
+                    <span class='col-md-offset-9'><strong>Цена: </strong>{{$advert->price}} рублей</span>
                     @if ($advert->new == 1)
                     <img src='/images/new.png' width="100">
                    @endif

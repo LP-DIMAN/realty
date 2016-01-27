@@ -36,58 +36,8 @@ $(document).ready(function() {
                 form.dialog('open');
             }
             /* инициализируем Datetimepicker */
-           event_start.datetimepicker({
-    hourGrid: 4,
-    minuteGrid: 10,
-    timeOnlyTitle: 'Выберите время',
-    timeText: 'Время',
-    hourText: 'Часы',
-    minuteText: 'Минуты',
-    secondText: 'Секунды',
-    currentText: 'Теперь',
-    closeText: 'Закрыть',
-    closeText: 'Закрыть',
-    prevText: '< Пред',
-    nextText: 'След >',
-    currentText: 'Сегодня',
-    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
-    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-    weekHeader: 'Не',
-    dateFormat: 'dd.mm.yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''
-});
-event_end.datetimepicker({
-    hourGrid: 4,
-    minuteGrid: 10,
-    timeOnlyTitle: 'Выберите время',
-    timeText: 'Время',
-    hourText: 'Часы',
-    minuteText: 'Минуты',
-    secondText: 'Секунды',
-    currentText: 'Теперь',
-    closeText: 'Закрыть',
-    closeText: 'Закрыть',
-    prevText: '< Пред',
-    nextText: 'След >',
-    currentText: 'Сегодня',
-    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
-    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-    weekHeader: 'Не',
-    dateFormat: 'dd.mm.yy',
-    firstDay: 1,
-    isRTL: false,
-    showMonthAfterYear: false,
-    yearSuffix: ''
-});
+            event_start.datetimepicker({hourGrid: 4, minuteGrid: 10, dateFormat: 'mm/dd/yy'});
+            event_end.datetimepicker({hourGrid: 4, minuteGrid: 10, dateFormat: 'mm/dd/yy'});
             /* инициализируем FullCalendar */
             calendar.fullCalendar({
                 firstDay: 1,
@@ -161,11 +111,11 @@ event_end.datetimepicker({
                                 op: 'add'
                             },
                             success: function(id){
-                                calendar.fullCalendar('refetchEvents');
+                               calendar.fullCalendar('refetchEvents');
                                 
                             }
                         });
-                         $(this).dialog('close');
+            $(this).dialog('close');
             emptyForm();
                     }
                 },
@@ -210,7 +160,7 @@ event_end.datetimepicker({
                                 op: 'delete'
                             },
                             success: function(id){
-                                  calendar.fullCalendar('refetchEvents');
+                                calendar.fullCalendar('refetchEvents');
                             }
                         });
                         $(this).dialog('close');

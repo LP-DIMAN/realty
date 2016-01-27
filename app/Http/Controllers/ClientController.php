@@ -108,7 +108,7 @@ class ClientController extends Controller {
 		$id_client = Auth::user()->id;
 		$date_event = $request->input('start');
 		$comment = $request->input('type');
-		
+		$id_event = $request->input('id');
 		//Добавление встречи
 		if ($request -> input('op') == 'add')
 		{
@@ -132,7 +132,7 @@ class ClientController extends Controller {
 		//Редактируем встречу
 		elseif($request->input('op') == 'edit')
 		{
-		Adverts::update_event($id_client,$date_event,$comment);
+		Adverts::update_event($id_client,$date_event,$comment,$id_event);
 
 		}
 

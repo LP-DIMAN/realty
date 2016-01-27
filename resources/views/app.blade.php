@@ -11,6 +11,8 @@
 	<link rel='stylesheet' type='text/css' href='/css/fullcalendar.css' />
     <link rel='stylesheet' type='text/css' href='/css/jquery-ui-1.8.11.custom.css' />
     <link rel='stylesheet' type='text/css' href='/css/jquery.kladr.min.css' />
+    <link rel='stylesheet' type='text/css' href='/css/wow.css' />
+    <link rel='stylesheet' type='text/css' href='/css/wow_slider.css' />
 	
 	
 
@@ -42,7 +44,7 @@
 				</button>
 				<a class="navbar-brand" href="#">Сайт недвижимости</a>
 			</div>
-
+				
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Главная</a></li>
@@ -103,8 +105,14 @@
 	@yield('content')
 	
 
-	<!-- Scripts -->
+	
+<div class='footer col-xs-12'>  
+<div class="navbar-inner"> 
+<p class='copyright'>&copy;2016 </p>
+</div>
 
+</div>
+<!-- Scripts -->
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <script src="/js/jquery-ui-1.8.11.custom.min.js"></script>
         <script src='/js/fullcalendar.min.js'></script>
@@ -113,6 +121,8 @@
 	<script src="/js/script_calendar.js"></script> 
 	<script src="/js/script_calendar_realtor.js"></script> 
 	<script src="/js/jquery.kladr.min.js"></script> 
+	<script src="/js/wow_script.js"></script> 
+	<script src="/js/wowslider.js"></script> 
 	<script>
 			
 	//Выбор города в поиске объявления	
