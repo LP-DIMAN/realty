@@ -42,7 +42,7 @@
                     <div class="table table-bordered">
                     Объявление добавлено <em> {{$advert->date}} </em> <br>
                     @if ($advert->image !==null)
-                     <img src='{{$advert->image}}' width="200" class="image_avatar"><br>
+                      <img src='{{$advert->image}}' class="image_avatar img-responsive img-rounded" id='resizable'><br>
                      @endif
                     <strong>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>

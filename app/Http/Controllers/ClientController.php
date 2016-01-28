@@ -34,7 +34,7 @@ class ClientController extends Controller {
 		}
 		//ид текущего пользователя
 		$client = Auth::user()->id;
-//Получаем объявления, которые запомнил клиент
+		//Получаем объявления, которые запомнил клиент
 		$data['remember_adverts_client'] = Adverts::get_remember_adverts_client($client);
 		//Получаем риэлторов
 		$data['realtor'] = User::get_realtors();
@@ -69,10 +69,10 @@ class ClientController extends Controller {
 		$id_client = Auth::user()->id;
 		Adverts::cross_advert($id_client,$id_advert);
 }
-  	//Удаление перечеркнутого объявления
-  	
-  	public function delete_cross_advert(Request $request)
-  	{
+	//Удаление перечеркнутого объявления
+	
+	public function delete_cross_advert(Request $request)
+	{
 		$id_advert = $request->input('id_advert');
 		$id_client = Auth::user()->id;
 		$result = DB::table('clients2adverts')->where('id_adverts','=',$id_advert)
@@ -80,7 +80,7 @@ class ClientController extends Controller {
 		->where('cross_advert','=',1)->update(['cross_advert'=>null]);
 		
 
-  	}
+	}
 	
 	// Выделение важного объявления
 	public function lead_advert(Request $request)
@@ -109,6 +109,7 @@ class ClientController extends Controller {
 		$date_event = $request->input('start');
 		$comment = $request->input('type');
 		$id_event = $request->input('id');
+		
 		//Добавление встречи
 		if ($request -> input('op') == 'add')
 		{
@@ -116,6 +117,7 @@ class ClientController extends Controller {
 			
 			Adverts::insert_event($id_client,$id_realtor,$date_event,$comment);
 		}
+		
 		//Удаление встречи
 		elseif($request -> input('op') == 'delete')
 		{

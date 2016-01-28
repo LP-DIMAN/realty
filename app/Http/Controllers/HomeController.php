@@ -97,20 +97,23 @@ class HomeController extends Controller {
            ->whereRaw("quantity_room between '$min_rooms' and '$max_rooms'")->get();
           
            foreach ($found_adverts as $advert):?>
-
+                    <div class='advert col-xs-12'>
                     <div class="table table-bordered">
                     Объявление добавлено <em> <?=$advert->date;?> </em> <br>
-                    <strong><?=$advert->title;?></strong><br>
+                    <?if ($advert->image !==null):?>
+                     <img src="<?=$advert->image;?>"  class="image_avatar img-responsive img-rounded" id='resizable'><br><br>
+                     <?endif;?>
+                    <br><strong class='title_advert'><?=$advert->title;?></strong><br>
                     <strong>Тип недвижимости: </strong><?=$advert->type;?><br>
                     <strong>Количество комнат: </strong><?=$advert->quantity_room;?><br>
                     <strong>Город: </strong><?=$advert->city;?><br>
-                   <strong> Описание: </strong> <?=$advert->description;?><br> 
+                   <strong class='description'> Описание: </strong> <?=$advert->description;?><br> 
+                   <span class='col-md-offset-9'><strong>Цена: </strong><?=$advert->price;?> рублей</span>
                    <? if($advert->new == 1):?>
-                   <img src="/images/new.png" id='new' title="новое объявление" alt="новая" width="200" >
+                 <img src='/images/new.png' width="100">
 
                   <?endif;?>
                   
-                  <span style="margin-left:721px"><strong>Цена: </strong><?=$advert->price;?> рублей</span>
            <?endforeach;
         //return $found_adverts->toJson();
         

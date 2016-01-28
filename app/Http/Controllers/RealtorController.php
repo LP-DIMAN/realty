@@ -131,8 +131,8 @@ class RealtorController extends Controller {
 		foreach($id_advert as $advert){
 
 		Adverts::insert_recommended_advert($id_client,$advert);
-
 	}
+	
 	}
 
 	//Подгрузка сохраненных объявлений

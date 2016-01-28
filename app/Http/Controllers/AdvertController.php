@@ -67,37 +67,53 @@ class AdvertController extends Controller {
         }
     }
     
-     
+        //Получаем ид текущего пользователя
         $realtor =Auth::user()->id;
 
 
 // Большой блок проверок при создании объявления
+        //Если выбран дом, но количество комнат равно нулю, выдаем ошибку
         if ($type_realty == 'дом' && $room == 0){
           return redirect()->to('/create_advert')->with(['error_advert'=>'Дом или квартира не могут иметь 0 комнат']);
         }
+        //Если выбрана квартира, но количество комнат равно нулю, выдаем ошибку
         if ($type_realty == 'квартира' && $room == 0){
           return redirect()->to('/create_advert')->with(['error_advert'=>'Дом или квартира не могут иметь 0 комнат']);
         }
+        //Если выбран участок, но количество комнат больше нуля, выдаем ошибку
           if ($type_realty == 'участок' && $room > 0){
           return redirect()->to('/create_advert')->with(['error_advert'=>'Участок не может иметь комнат']);
         }
 
         if ($request->input('new') && $img !==null){
-    DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new,image,date) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1,'$image','$date')");
-        
-    }
+         DB::table('adverts')->insert(
+        ['id_realtor'=>$realtor,'type'=>$type_realty,'title'=>$title,'quantity_room'=>$room,
+        'city'=>$city,'description'=>$description,
+        'price'=>$price,'new'=>1,'image'=>$image,'date'=>$date]);  
+         }
+
      if ($request->input('new') && $img == null){
-    DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,new,image,date) values($realtor,'$type_realty','$title',$room,'$city','$description',$price,1,null,'$date')");
-        
+        DB::table('adverts')->insert(
+        ['id_realtor'=>$realtor,'type'=>$type_realty,'title'=>$title,'quantity_room'=>$room,
+        'city'=>$city,'description'=>$description,
+        'price'=>$price,'new'=>1,'image'=>null,'date'=>$date]);
+
     }
-    if(!$request->input('new')&& $img !==null)
+    if(!$request->input('new') && $img !==null)
     {
-        DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,image,date) values($realtor,'$type_realty','$title','$room','$city','$description',$price,'$image','$date')");
         
+        DB::table('adverts')->insert(
+        ['id_realtor'=>$realtor,'type'=>$type_realty,'title'=>$title,'quantity_room'=>$room,
+        'city'=>$city,'description'=>$description,
+        'price'=>$price,'image'=>$image,'date'=>$date]);
     }
     if(!$request->input('new') && $img ==null)
     {
-         DB::insert("insert into adverts (id_realtor,type,title,quantity_room,city,description,price,image,date) values($realtor,'$type_realty','$title','$room','$city','$description',$price,null,'$date')");
+
+         DB::table('adverts')->insert(
+        ['id_realtor'=>$realtor,'type'=>$type_realty,'title'=>$title,'quantity_room'=>$room,
+        'city'=>$city,'description'=>$description,
+        'price'=>$price,'image'=>null,'date'=>$date]);
     }
 
         return redirect()->to('/realtor')->with(['advert'=>'Объявление отправлено на проверку']);

@@ -72,30 +72,30 @@
                     <strong class='options_search'>Параметры поиска:</strong>
                     <form id='search'>
                     
-                        <select name="type" id="type" class="form-control">
-                            <option value="Дом">Дом</option>
-                            <option value="Квартира">Квартира</option>
-                            <option value="Участок">Участок</option>
+                        <select name="type" id="type" class="form-control type_realty options_search">
+                            <option class='options_search' value="Дом">Дом</option>
+                            <option class='options_search' value="Квартира">Квартира</option>
+                            <option class='options_search' value="Участок">Участок</option>
 
                         </select>
-                        Город: <input type="text" name="city" id="city" class="form-control">
+                        <strong class='options_search'>Город:</strong> <input type="text" name="city" id="city" class="form-control">
                
 
                     
                         <input type="checkbox" name='new' id='new'><label for="new">Новое жилье</label><br>
-                        Количество комнат: <br>
+                        <strong class='options_search'>Количество комнат: </strong> <br>
                             
-                             От <input type="number" name="min_rooms" min='0' max='21' value="0">
-                             До <input type="number" name="max_rooms" min='0' max='21' value="10"><br>
+                             <strong class='options_search'>От </strong> <input type="number" name="min_rooms" id='min_rooms' min='0' max='21' value="0">
+                             <strong class='options_search'>До</strong> <input type="number" name="max_rooms" id='max_rooms' min='0' max='21' value="10"><br>
                                 <label for="minCost">Цена:</label><br>
 
-От <input type="number" id="minCost" name="min_price" value="50000000 " min='0'/>
+<strong class='options_search'>От </strong> <input type="number" id="minCost" name="min_price" value="50000000 " min='0'/>
 
-До <input type="number" id="maxCost" name="max_price" min='0'  value="100000000 "/>&nbsp;рублей<br>
+<strong class='options_search'>До </strong> <input type="number" id="maxCost" name="max_price" min='0'  value="100000000 "/>&nbsp;<strong class='options_search'>рублей</strong><br>
 
 <div id="slider"></div><br>
 
-                         <button type="button" id="search_adverts" class="btn btn-success">Показать объяления</button>
+                         <button type="button" id="search_adverts" class="btn btn-success">Показать объявления</button>
                     
                     </form>
                     <div id="result"></div>

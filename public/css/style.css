@@ -100,12 +100,16 @@ background:yellow;
 .desctop{
     border:2px solid #ccc;
     width: 300px;
-    height: 600px;
+    height: 500px;
+
+}
+.desctop_adverts{
 
 }
 .client{
     border: 2px solid #ccc;
     z-index: 1;
+    cursor: pointer;
 }
 .clients{
     overflow: scroll;
@@ -115,14 +119,31 @@ background:yellow;
     color:green;
     font:14px;
 }
+
 .search{
-    background: #eee;
+    background: #D9ECFF;
+    color: #000;
+}
+#type{
+    background: #8CC6FF;
+}
+#city{
+     background: #8CC6FF;
+}
+#minCost{
+    background: #8CC6FF;
+}
+#maxCost{
+    background: #8CC6FF;
+}
+#min_rooms,#max_rooms{
+    background: #8CC6FF;
 }
 .panel-heading{
     background: #2CA2BF;
 }
 #slider{
-    background: #FF0000;
+    background: #46637F;
 }
 .footer{
     height: 40px;

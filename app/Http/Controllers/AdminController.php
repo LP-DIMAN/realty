@@ -24,6 +24,7 @@ class AdminController extends Controller {
 	
 	public function index()
 	{
+		// Подтверждение или отклонение риэлтора
 		$data['admin'] = Admin::get_confirmation_realtor();
 		//Выводим неподтвержденные объявления
 		$data['status_advert'] = Admin::where('status','=',0)->get();

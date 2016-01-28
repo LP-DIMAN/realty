@@ -96,7 +96,8 @@
         <div class="realtor_adverts">
             @foreach($adverts as $advert)
              <div class="table table-bordered">
-             <div class="adverts_realtor">
+             
+             <div class="adverts_realtor" id="{{$advert->id_realty}}">
                <input type="hidden" value="{{$advert->id_realty}}" name="id_advert[]" class="id_advert">
                <strong>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
@@ -105,6 +106,7 @@
                     {{substr($advert->description,0,60)}}...<br>
                     <span ><strong>Цена: </strong>{{$advert->price}} рублей</span>
                     <hr>
+                    
                     </div>
             @endforeach
             </div>

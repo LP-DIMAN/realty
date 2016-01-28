@@ -25,7 +25,7 @@ $(document).ready(function(){
     	 
 
  });
-
+    //Изменение размера изображений
     $('.image_avatar').resizable(
     {
     	animate:true,
@@ -51,28 +51,30 @@ $(document).ready(function(){
     	 }
 
  });
+    /*$('adverts_realtor').sortable({
+      connectWith: ".desctop_adverts"
+    }).disableSelection();*/
 
     //обработка клиента
     $(".desctop").droppable({
-      drop: function(event, ui) {
-        if ($(this).hasClass("ui-state-highlight")) {
-         // event.preventDefault();
-         ui.draggable.appendTo('.clients');
-          return;
-        }
-        $(this)
-          .addClass("ui-state-highlight");
-          $('.client').not(ui.draggable).draggable("option", "revert", 'valid');
-
-      },
+ 
       out: function(event, ui) {
         $(this)
           .removeClass("ui-state-highlight");
         $('.client').not(ui.draggable).draggable("option", "revert", null);
         $('.desctop_adverts').empty();
+       
       },
       over:function(event,ui)
       {
+      	 if ($(this).hasClass("ui-state-highlight")) {
+          event.preventDefault();
+        // ui.draggable.appendTo('.clients');
+          return;
+        }
+         $(this)
+          .addClass("ui-state-highlight");
+          $('.client').not(ui.draggable).draggable("option", "revert", 'valid');
    		ui.draggable.prependTo($(this));
    		var client = $('.desctop').find('.id_client').val();
    		$.get('desctop_adverts',{client:client},function(data)
@@ -93,11 +95,11 @@ $(document).ready(function(){
                     "<strong>Тип недвижимости: </strong>" + obj[i].type + 
                     "<br><strong>Количество комнат: </strong>" + obj[i].quantity_room + 
                     "<br><strong>Город: </strong>" + obj[i].city + 
-                   "<br><strong> Описание: </strong><br>" + obj[i].description  + 
+                   "<br><strong> Описание: </strong><br>" + obj[i].description.substring(0,60) + "..."  + 
              
                   
                	"<br><span><strong>Цена: </strong>" + obj[i].price + " рублей</span>"+
-				"<br> <button type='submit' class='btn btn-danger'  name='delete_recommended_advert' value=" + obj[i].id_realty  + ">Удалить </button></div><br /> " );
+				"<br> <button type='submit' class='btn btn-danger'  name='delete_recommended_advert' id="+ obj[i].id_realty  + " value=" + obj[i].id_realty  + ">Удалить </button></div><br /> " );
 
 						}
 					 result.html();
@@ -112,6 +114,18 @@ $(document).ready(function(){
 
 
 			});
+					//Удаление повторяющихся объявлений
+			$('.desctop_adverts .adverts_realtor [name=delete_recommended_advert] ').each(function (index, elem) {
+        var id_advert = elem;
+
+        $('.realtor_adverts .adverts_realtor').each(function (index, elem) {
+            var id_realtor_advert = elem;
+         	
+            if (id_realtor_advert.id == id_advert.id) {
+                id_realtor_advert.remove();
+            };
+        });
+    });
    			});
 			
       }
@@ -219,14 +233,6 @@ $('.comment').click(function(){
 		
 		$.get('delete_advert',{comment:id_comment});
 		
-
-			
-		
-
-
-		
-
-
 	});
 
 //Перечеркивание неважных для клиента объявлений
@@ -334,7 +340,7 @@ $("input#maxCost").change(function(){
     //Новое жилье, галочка
     $( "#new" ).button();
 
-    //Поиск объявлений
+    //Поиск объявлений по параметрам
 
     $('#search_adverts').click(function()
 	{
@@ -374,7 +380,7 @@ $("input#maxCost").change(function(){
 
 
 	});
-		// Реедактировать мое объявление
+		// Редактировать мое объявление
 	$('.edit_my_advert').click(function()
 	{
 
@@ -501,14 +507,15 @@ $( ".search_clients" ).autocomplete({
 						for(var i = 0; i <obj.length;i++)
 						{
 
-							result.append("<div class='adverts_realtor'> <div class='table table-bordered'>" +
+							result.append("<div class='table table-bordered'><div class='adverts_realtor'>"  +
 						
 						 "Объявление добавлено <em>" + obj[i].date + "</em> <br>" +
+						  "<input type='hidden' value=" + obj[i].id_realty + " name='id_advert[]' class='id_advert'>" +
                     	"<strong>" + obj[i].title + "</strong><br>" +
                     "<strong>Тип недвижимости: </strong>" + obj[i].type + 
                     "<br><strong>Количество комнат: </strong>" + obj[i].quantity_room + 
                     "<br><strong>Город: </strong>" + obj[i].city + 
-                   "<br><strong> Описание: </strong><br>" + obj[i].description  + 
+                   "<br><strong> Описание: </strong><br>" + obj[i].description.substring(0,60)  + 
              
                   
                	"<br><span><strong>Цена: </strong>" + obj[i].price + " рублей</span>"+
@@ -516,13 +523,31 @@ $( ".search_clients" ).autocomplete({
 
 						}
 					 result.html();
-							
+	
+	// Перетаскивание объявлений
+    $(".adverts_realtor").draggable(
+    	{
+    	 cursor:"pointer",
+    	helper:'clone',
+    	 scroll:false,
+    	
+    	 start:function()
+    	 {
+    	 	$(this).css('background','yellow');
+    	 },
+    	 stop:function()
+    	 {
+    	 	$(this).css('background','white');
+    	 	$('.desctop_adverts').prepend($(this));
+    	 }
+
+ });
 				});
 
 
 				});
 
-
+		
 
 
  

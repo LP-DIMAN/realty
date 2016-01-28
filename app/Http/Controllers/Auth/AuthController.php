@@ -93,7 +93,7 @@ class AuthController extends Controller {
                                 if ($this->auth->attempt($credentials, $request->has('remember','realtor')))
 			{
 				$realtor = Code::get_user_realtor($email['email']);
-				
+				// Если пользователь - риэлтор
 				if ($realtor->id_role == 3 && $realtor->confirmation_realtor == 2)
 				{
 						
