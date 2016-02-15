@@ -13,6 +13,7 @@
     <link rel='stylesheet' type='text/css' href='/css/jquery.kladr.min.css' />
     <link rel='stylesheet' type='text/css' href='/css/wow.css' />
     <link rel='stylesheet' type='text/css' href='/css/wow_slider.css' />
+    <link rel='stylesheet' type='text/css' href='/css/lightbox.css' />
 	
 	
 
@@ -123,6 +124,7 @@
 	<script src="/js/jquery.kladr.min.js"></script> 
 	<script src="/js/wow_script.js"></script> 
 	<script src="/js/wowslider.js"></script> 
+	<script src="/js/lightbox.js"></script> 
 	<script>
 			
 	//Выбор города в поиске объявления	

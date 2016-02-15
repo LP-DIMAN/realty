@@ -39,12 +39,13 @@
             <h3>Клиенты</h3><br>
          
 <input type="search" name="search_clients" class="search_clients" placeholder='Поиск клиентов'>
-<button type="submit" name="result_search_clients" class="result_search_clients btn btn-warning btn-sm">Найти</button>
+<button type="submit" name="result_search_clients" class="result_search_clients btn btn-warning btn-sm">Найти</button><br>
+          <div class='search_client'> </div>
           <div class='clients'>
-          <div class="table table-bordered">
+            
             @foreach($clients as $client => $advert)
-             <div class="table table-bordered">
-             <div class="client_adverts">
+          
+          
              <div class ="client">
                 <strong>ФИО</strong><br>
              
@@ -55,32 +56,34 @@
                 @for($i = 0;$i < count($advert);$i++)
 
                 <input type="hidden" value="{{$advert[$i]['id']}}" name='id_client' class="id_client">
-              <!-- Название:{{$advert[$i]['title']}} <br>-->
+              Тип недвижимости:{{$advert[$i]['type']}} <br>
                Город: {{$advert[$i]['city']}} <br>
                 Количество комнат:{{$advert[$i]['quantity_room']}} <br>
               <!-- Описание: {{substr($advert[$i]['description'],0,60)}} <br>-->
-               Цена: {{$advert[$i]['price']}}
-
+               Цена: {{$advert[$i]['price']}} <br>
+                Номер телефона клиента: {{$advert[$i]['phone']}}
                 </p>
                
                 @endfor
                
-                </div>
-                </div>
+               
+                
                 </div>
             @endforeach
+         
+             
             </div>
-              
-            </div>
+
             
             </div>
             <div class="col-lg-4">
             <h3> Рабочий стол </h3>
             <div class="desctop"><hr>
+            <p class='help'>Перетащите клиента в эту область </p>
           </div>
             
-            <div class='desctop_adverts'>
-
+            <div class="desctop_adverts work_advert">
+            <p class='help_advert'> А потом перетащите сюда объявления </p>
 
             </div>        
 
@@ -93,9 +96,9 @@
             
             <input type="search" name="search_adverts_realtor" class="search_adverts_realtor" placeholder='Поиск объявлений по названию и цене'>
             <button type="submit" name="result_search_adverts_realtor" class="result_search_adverts_realtor btn btn-warning btn-sm">Найти</button>
-        <div class="realtor_adverts">
+        <div class="realtor_adverts work_advert">
             @foreach($adverts as $advert)
-             <div class="table table-bordered">
+             <!--<div class="table table-bordered">-->
              
              <div class="adverts_realtor" id="{{$advert->id_realty}}">
                <input type="hidden" value="{{$advert->id_realty}}" name="id_advert[]" class="id_advert">

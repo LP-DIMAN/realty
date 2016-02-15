@@ -91,17 +91,27 @@ class HomeController extends Controller {
             $max_price = (int)$max_price;
             $min_rooms = $request->input('min_rooms');
             $max_rooms = $request->input('max_rooms');
-
+            if(isset($min_price,$max_price,$min_rooms,$max_rooms) && empty($city))
+            {
+              $results = ['type' => $type,'status'=>1];
+              $found_adverts = Adverts::where($results)
+              ->whereRaw("price between '$min_price' and '$max_price'")
+              ->whereRaw("quantity_room between '$min_rooms' and '$max_rooms'")
+              ->get();
+          
+            }
+            else{
             $results = ['city' => $city,'type' => $type,'status'=>1,'new' => $new_house];
            $found_adverts = Adverts::where($results)->whereRaw("price between '$min_price' and '$max_price'")
            ->whereRaw("quantity_room between '$min_rooms' and '$max_rooms'")->get();
+         }
           
            foreach ($found_adverts as $advert):?>
                     <div class='advert col-xs-12'>
                     <div class="table table-bordered">
                     Объявление добавлено <em> <?=$advert->date;?> </em> <br>
                     <?if ($advert->image !==null):?>
-                     <img src="<?=$advert->image;?>"  class="image_avatar img-responsive img-rounded" id='resizable'><br><br>
+                     <img src="<?=$advert->image;?>"  class="image_avatar img-responsive img-rounded" data-lightbox="roadtrip" id='resizable'><br><br>
                      <?endif;?>
                     <br><strong class='title_advert'><?=$advert->title;?></strong><br>
                     <strong>Тип недвижимости: </strong><?=$advert->type;?><br>
@@ -113,7 +123,8 @@ class HomeController extends Controller {
                  <img src='/images/new.png' width="100">
 
                   <?endif;?>
-                  
+                  </div>
+                  </div>
            <?endforeach;
         //return $found_adverts->toJson();
         

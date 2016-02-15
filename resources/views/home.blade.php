@@ -11,7 +11,6 @@
         <li><img src="data1/images/kartinki24_home_0085.jpg" alt="дом" title="дом" id="wows1_6"/></li>
         <li><img src="data1/images/komw_architektura_01.jpg" alt="дом" title="дом" id="wows1_7"/></li>
         <li><img src="data1/images/rsz_0_b48fc_a2daad04_xxl.jpg" alt="дом" title="дом" id="wows1_8"/></li>
-        <li><a href="http://wowslider.com"><img src="data1/images/world___india_beautiful_houses_in_goa_066066_.jpg" alt="дом" title="дом" id="wows1_9"/></a></li>
         <li><img src="data1/images/_3.jpg" alt="красивые дома3" title="красивые дома3" id="wows1_10"/></li>
     </ul></div>
 
@@ -69,10 +68,11 @@
 
                 <div class="panel-body">
                 <div class="search">
+                  <div class="form-group">
                     <strong class='options_search'>Параметры поиска:</strong>
                     <form id='search'>
                     
-                        <select name="type" id="type" class="form-control type_realty options_search">
+                        <select name="type" id="type" class="form-control type_realty options_search ">
                             <option class='options_search' value="Дом">Дом</option>
                             <option class='options_search' value="Квартира">Квартира</option>
                             <option class='options_search' value="Участок">Участок</option>
@@ -82,21 +82,21 @@
                
 
                     
-                        <input type="checkbox" name='new' id='new'><label for="new">Новое жилье</label><br>
+                        <input type="checkbox" name='new' class="form-control" id='new'><label for="new">Новое жилье</label><br>
                         <strong class='options_search'>Количество комнат: </strong> <br>
                             
                              <strong class='options_search'>От </strong> <input type="number" name="min_rooms" id='min_rooms' min='0' max='21' value="0">
                              <strong class='options_search'>До</strong> <input type="number" name="max_rooms" id='max_rooms' min='0' max='21' value="10"><br>
                                 <label for="minCost">Цена:</label><br>
 
-<strong class='options_search'>От </strong> <input type="number" id="minCost" name="min_price" value="50000000 " min='0'/>
+<strong class='options_search'>От </strong> <input type="number" id="minCost" name="min_price" value="0" min='0'/>
 
-<strong class='options_search'>До </strong> <input type="number" id="maxCost" name="max_price" min='0'  value="100000000 "/>&nbsp;<strong class='options_search'>рублей</strong><br>
+<strong class='options_search'>До </strong> <input type="number" id="maxCost" name="max_price" min='0'  value="100000000"/>&nbsp;<strong class='options_search'>рублей</strong><br>
 
 <div id="slider"></div><br>
 
                          <button type="button" id="search_adverts" class="btn btn-success">Показать объявления</button>
-                    
+                      </div>
                     </form>
                     <div id="result"></div>
 
@@ -115,7 +115,7 @@
              <div class="recomended_realtor">
               Объявление добавлено <em> {{$advert->date}} </em> <br>
                     @if ($advert->image !==null)
-                     <img src='{{$advert->image}}' class="image_avatar img-responsive img-rounded" id='resizable'><br>
+                     <img src='{{$advert->image}}' class="rec_avatar img-responsive img-rounded" data-lightbox="roadtrip" id='resizable'><br>
                      @endif
                <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>
@@ -152,7 +152,9 @@
                     <div class="table table-bordered">
                     Объявление добавлено <em> {{$advert->date}} </em> <br>
                     @if ($advert->image !==null)
-                     <img src='{{$advert->image}}'  class="image_avatar img-responsive img-rounded" id='resizable'><br>
+                    <a href='{{$advert->image}}'>
+                     <img src='{{$advert->image}}'  class="image_avatar img-responsive img-rounded" data-lightbox="roadtrip" id='resizable'><br>
+                     </a>
                      @endif
                     <strong class='title_advert'>{{$advert->title}}</strong><br>
                     <strong>Тип недвижимости: </strong>{{$advert->type}}<br>

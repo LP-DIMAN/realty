@@ -63,6 +63,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			"id"=>$client->id,
 			"id_realtor"=>$client->id_realtor,
 			"id_realty"=>$client->id_realty,
+			"phone" => $client->phone,
 			"type"=>$client->type,
 			"title" => $client->title,
 			"quantity_room" =>$client->quantity_room,

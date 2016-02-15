@@ -138,13 +138,27 @@ protected static function result_search_clients($search)
 {
 	$result = DB::select("SELECT * FROM users as u left JOIN clients2adverts as c on u.id = c.id_client 
 			left JOIN adverts as a ON c.id_adverts = a.id_realty
-          WHERE c.lead = 1 and  u.surname like '%$search%' or u.name like '%$search%'
-			or u.patronymic like '%$search%' or a.type like '%$search%' or a.title like '%$search%'
-			or a.description like '%$search%' or a.quantity_room like '%$search%' or a.city like '%$search%'
-			or a.type like '%$search%'
+          WHERE c.lead = 1 and u.id_role=2 and u.activated = 1 and u.surname like '%$search%' 
 
           ");
-	return $result;
+	$arr = [];
+		foreach ($result as $client) {
+			$arr["$client->surname $client->name $client->patronymic"][] = [
+			"id"=>$client->id,
+			"id_realtor"=>$client->id_realtor,
+			"id_realty"=>$client->id_realty,
+			"type"=>$client->type,
+			"title" => $client->title,
+			"quantity_room" =>$client->quantity_room,
+			"city"=>$client->city,
+			"description"=>$client->description,
+			"new"=>$client->new,
+			"price"=>$client->price,
+			"status"=>$client->status,
+			"image"=>$client->image,
+			"date"=>$client->date] ;  
+		}
+	return $arr;
 }
 
 

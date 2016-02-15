@@ -1,7 +1,7 @@
 
 body{
     font-family: Arial;
-}
+}z
 /*Перечеркивание объявлений*/
 del.cross {
     display:inline-block; /* запрещает перенос текста на следующую строку */
@@ -42,8 +42,9 @@ img {
 
 .options_search{
 
-    font-family: Georgia;
+    font-family: "Basic Comical NC";
     font-size: 21px;
+    font-weight: normal;
 }
 /*Важное объявление */
 .holder {
@@ -100,20 +101,33 @@ background:yellow;
 .desctop{
     border:2px solid #ccc;
     width: 300px;
-    height: 500px;
+    height: 300px;
+  
 
 }
 .desctop_adverts{
 
+   border:2px solid #ccc;
+    width: 300px;
+    height: 300px;
+    overflow-y: scroll;
 }
 .client{
     border: 2px solid #ccc;
     z-index: 1;
     cursor: pointer;
 }
+.search_client{
+    width: 300px;
+    border: 2px solid #ccc;
+    z-index: 1;
+    cursor: pointer;
+}
 .clients{
-    overflow: scroll;
+    
     height: 550px;
+    overflow-y: scroll;
+    overflow-x:hidden; 
 }
 .green{
     color:green;
@@ -121,24 +135,14 @@ background:yellow;
 }
 
 .search{
-    background: #D9ECFF;
+    border: 2px solid #ccc;
+    background: #fff;
     color: #000;
 }
-#type{
-    background: #8CC6FF;
+#type,#city,#minCost,#maxCost,#min_rooms,#max_rooms{
+    background: #AEBDCC;
 }
-#city{
-     background: #8CC6FF;
-}
-#minCost{
-    background: #8CC6FF;
-}
-#maxCost{
-    background: #8CC6FF;
-}
-#min_rooms,#max_rooms{
-    background: #8CC6FF;
-}
+
 .panel-heading{
     background: #2CA2BF;
 }
@@ -150,18 +154,29 @@ background:yellow;
     background: #2c3e50;
 }
 .realtor_adverts{
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x:hidden; 
     height: 550px;
 }
 .recommended_adverts{
-    background: #2c3e50;
-    color: #fff;
+    background: #ccc;
+    color: #2F2D2D;
 }
 .recommended_title{
    font-size: 23px;
    font-family: Georgia;
 }
+.rec_avatar{
+    width: 300px;
+}
 .copyright{
     color:#fff;
     text-align: center;
+}
+.search_result{
+    font-size: 40px;
+    text-align: center;
+}
+.advertt{
+    height: 300px;
 }

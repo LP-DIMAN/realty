@@ -9,7 +9,9 @@ $(document).ready(function(){
     	{
     	 cursor:"pointer",
     	 scroll:false,
-    	 //helper:'clone',
+    	 scope:'client',
+    	 snap:true,
+    	 snapMode:'inner',
     	
 
     	 start:function()
@@ -33,36 +35,36 @@ $(document).ready(function(){
 
     	);
  
-    // Перетаскивание объявлений
-    $(".adverts_realtor").draggable(
-    	{
-    	 cursor:"pointer",
-    	helper:'clone',
-    	 scroll:false,
-    	
-    	 start:function()
-    	 {
-    	 	$(this).css('background','yellow');
-    	 },
-    	 stop:function()
-    	 {
-    	 	$(this).css('background','white');
-    	 	$('.desctop_adverts').prepend($(this));
-    	 }
 
- });
-    /*$('adverts_realtor').sortable({
-      connectWith: ".desctop_adverts"
-    }).disableSelection();*/
+//Перетаскивание объявлений
+ $('.realtor_adverts,.desctop_adverts').sortable(
+ 	{ connectWith: ".work_advert",
+
+ 	stop:function(event,ui)
+ 	{
+ 		if (!$('.desctop').hasClass('ui-state-highlight'))
+ 		{
+ 			event.preventDefault();
+ 			alert('Сначала перетащите клиента в определенную область');
+ 		}
+ 	},
+
+	}).disableSelection();
+
+    
 
     //обработка клиента
     $(".desctop").droppable({
- 
+ 	
+    	tolerance:'intersect',
+    	scope:'client',
+
       out: function(event, ui) {
         $(this)
           .removeClass("ui-state-highlight");
         $('.client').not(ui.draggable).draggable("option", "revert", null);
         $('.desctop_adverts').empty();
+        $('.help').prependTo($(this));
        
       },
       over:function(event,ui)
@@ -72,9 +74,13 @@ $(document).ready(function(){
         // ui.draggable.appendTo('.clients');
           return;
         }
+
+        $('.help').empty();
+		     
          $(this)
           .addClass("ui-state-highlight");
           $('.client').not(ui.draggable).draggable("option", "revert", 'valid');
+         
    		ui.draggable.prependTo($(this));
    		var client = $('.desctop').find('.id_client').val();
    		$.get('desctop_adverts',{client:client},function(data)
@@ -83,6 +89,7 @@ $(document).ready(function(){
    				var obj = $.parseJSON(data);
 					//console.log(obj.length);
 					var result = $('.desctop_adverts');
+				
 					result.empty();
 					
 						for(var i = 0; i <obj.length;i++)
@@ -195,18 +202,19 @@ $('.comment').click(function(){
 		
 	var id_comment = $(this).val();
 
-	console.log(id_comment);
-	//$(this).remove();
+	
+	
 	$(this).next('.empty_comment').html("<br><textarea rows=10 cols=70 name='add_comment' class='add_comment btn btn-primary' maxlengh='256' autofocus> </textarea><br><button type='submit' name='add' class='add btn btn-primary'> Добавить сообщение</button>");
 	
 	$('.add').click(function()
 	{
 		var params = $('.add_comment').val();
-		console.log(params);
+		
 		$.post('add_comment',{id_advert:id_comment,params},function(data,textStatus,jqXHR)
 		{
-			$('.add_comment').html(params);
+			$('.comment_post').html('<strong>Комментарий к записи: </strong>' + params);
 			$('.add').remove();
+			$('.add_comment').remove();
 			
 		});
 	});
@@ -217,21 +225,31 @@ $('.comment').click(function(){
 });
 	
 
-	//Удаление комментариев
+	//Удаление объявления из личного кабинета
 	$('.delete_advert').click(function()
-	{
+	{	
+			var delete_advert = $(this);
+			var id_comment = $(this).val();
+		$( "#dialog-delete" ).dialog({
+      resizable: false,
+      height:200,
+      modal: true,
+      buttons: {
+        "Да": function() {
+          $( this ).dialog( "close" );
 
-		var id_comment = $(this).val();
 		console.log(id_comment);
 				
-			$(this).siblings('.advert').fadeOut(300);
-			$(this).siblings('.leadd').fadeOut(300);
-			$(this).siblings('.cross').fadeOut(300);
-			$(this).siblings('.link').fadeOut(300);
-			$(this).siblings('.comment').fadeOut(300);
-			$(this).fadeOut(300);
+		delete_advert.parent().fadeOut(300);
 		
 		$.get('delete_advert',{comment:id_comment});
+        },
+        'Нет': function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+	
 		
 	});
 
@@ -272,9 +290,7 @@ else
 
 	if ($(this).siblings('.advert').hasClass('holder')){
 	$.get('lead_advert',{id_advert:id_advert});
-}
-else
-{
+}else{
 	$.get('delete_lead_advert',{id_advert:id_advert});
 }
 
@@ -288,7 +304,7 @@ else
 	{
 	var id_comment = $(this).val();
 
-	$(this).html("<br><script type='text/javascript' src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js' charset='utf-8'></script><script type='text/javascript' src='//yastatic.net/share2/share.js' charset='utf-8'></script><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir' data-url='http://realty?id_advert=id_comment'></div>");
+	$(this).html("<br><script type='text/javascript' src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js' charset='utf-8'></script><script type='text/javascript' src='//yastatic.net/share2/share.js' charset='utf-8'></script><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir' data-url='http://realty?id_advert=" + id_comment + "'></div>");
 
 	
 	
@@ -298,7 +314,7 @@ else
  	 $("#slider").slider({
 	min: 0,
 	max: 100000000,
-	values: [50000000,100000000],
+	values: [0,100000000],
 	range: true,
 	stop: function(event, ui) {
 		$("input#minCost").val($("#slider").slider("values",0));
@@ -349,10 +365,16 @@ $("input#maxCost").change(function(){
      {
 
      	$('.advert').remove();
+     	if (data == '')
+     	{
+     		$('#result').html("<strong class='search_result'>Ничего не найдено</strong>");
+     	}
+     	else{
      	$('#result').html(data);
-     	var advert = $('#result').length;
+     }
+     	var advert = $('#result .advert').length;
      
-     	//$('#search_adverts').html('Найденных объявлений - ' + advert);
+     	$('#search_adverts').html('Найденных объявлений - ' + advert);
      })
 
     });
@@ -403,15 +425,20 @@ $("input#maxCost").change(function(){
 					
 
 					var obj = $.parseJSON(data);
-					//console.log(obj.length);
+					//console.log(obj);
 					var result = $('.panel-body');
 					result.empty();
-					result.append('<h1>Результаты поиска </h1>')
+					
+					result.append('<h1>Результаты поиска </h1>');
+					if (obj == '')
+					{
+						result.html("<strong class='search_result'>Ничего не найдено </strong>");
+					}
 						for(var i = 0; i < obj.length;i++)
 						{
 
 							result.append("<div class='advert'> <div class='table table-bordered'>" +
-							"<img src=" + obj[i].image +" class='image_avatar img-responsive img-rounded' id='resizable'><br>"+
+							
 						 "Объявление добавлено <em>" + obj[i].date + "</em> <br>" +
                     	"<strong>" + obj[i].title + "</strong><br>" +
                     "<strong>Тип недвижимости: </strong>" + obj[i].type + 
@@ -450,28 +477,39 @@ $("input#maxCost").change(function(){
 					var obj = $.parseJSON(data);
 					//console.log(obj.length);
 					var result = $('.clients');
-					result.empty();
-					console.log(obj);
-						for(var i = 0; i < obj.length;i++)
+					result.remove();
+					var search_client = $('.search_client');
+					search_client.empty();
+					$('.client').remove();
+					search_client.addClass('work_advert');
+					keys = Object.keys(obj)
+					
+						for(var i = 0,l1 = keys.length; i < l1;i++)
 						{
+								
+							 search_client.prepend(keys[i] + 
+							 	"<br><strong> Предпочтения </strong><br>"); 
 
-							result.append("<div class='advert'> <div class='table table-bordered'>" +
-							obj[i].surname + ' ' + obj[i].name + ' ' + obj[i].patronymic + "<br>" +
-						 "Объявление добавлено <em>" + obj[i].date + "</em> <br>" +
-                    	"<strong>" + obj[i].title + "</strong><br>" +
-                    "<strong>Тип недвижимости: </strong>" + obj[i].type + 
-                    "<br><strong>Количество комнат: </strong>" + obj[i].quantity_room + 
-                    "<br><strong>Город: </strong>" + obj[i].city + 
-                   "<br><strong> Описание: </strong><br>" + obj[i].description  + 
-             
-                  
-               	"<br><span><strong>Цена: </strong>" + obj[i].price + " рублей</span>"+
-				"</div> </div><br />" );
+    						for (var j = 0, arr = obj[keys[i]], l2 = arr.length; j < l2; j++) {
+								
+							search_client.append("<div class='client'><input type='hidden' value=" + arr[j].id + " name='id_client' class='id_client'>" +
+						"<strong>" + arr[j].title + "</strong><br>" +
+                    "Тип недвижимости:" + arr[j].type + 
+                    "<br>Город:" + arr[j].city + 
+                    "<br>Город:" + arr[j].quantity_room + 
+                    "<br><span>Цена:" + arr[j].price + " рублей</span>"+
+				"</div><br />" );
 
-						};
-					 result.html();
-							
+						}
+						
+					
+					};
+					
+					 search_client.html();
+
+
 				});
+				
 
 
 				});
@@ -525,31 +563,22 @@ $( ".search_clients" ).autocomplete({
 					 result.html();
 	
 	// Перетаскивание объявлений
-    $(".adverts_realtor").draggable(
-    	{
-    	 cursor:"pointer",
-    	helper:'clone',
-    	 scroll:false,
-    	
-    	 start:function()
-    	 {
-    	 	$(this).css('background','yellow');
-    	 },
-    	 stop:function()
-    	 {
-    	 	$(this).css('background','white');
-    	 	$('.desctop_adverts').prepend($(this));
-    	 }
+ $('.realtor_adverts,.desctop_adverts').sortable(
+ 	{ connectWith: ".work_advert",
 
- });
+ 	stop:function(event,ui)
+ 	{
+ 		if (!$('.desctop').hasClass('ui-state-highlight'))
+ 		{
+ 			event.preventDefault();
+ 			alert('Сначала перетащите клиента в определенную область');
+ 		}
+ 	},
+
+	}).disableSelection();
 				});
 
 
 				});
 
-		
-
-
- 
-
-	});
+		});

@@ -43,14 +43,15 @@
                    <input type="hidden" id="id_realtor" value="{{$advert->id_realtor }}">
                   <input type="hidden" id="token" value="{{ csrf_token() }}">
   
-                  @if ($advert->comment!==null)
+                
                   
 
-                      <div><strong> Комментарий к записи: </strong> {{$advert->comment}} </div>
+                      <div class="comment_post"><strong> Комментарий к записи: </strong> 
+                      {{$advert->comment}} </div>
                      
                      
 
-                  @endif
+                 
 
                    </div>
                    </div>
@@ -66,7 +67,9 @@
                        <span class="empty_comment"> </span>
                     <button type="submit" value="{{$advert->id_realty}}" name="link" class='link btn btn-warning'>Поделиться ссылкой</button>
                     <button type="submit" class="delete_advert btn btn-danger" value="{{$advert->id_realty}}" name='delete_advert'> Удалить объявление </button>
-                        
+                        <div id='dialog-delete' title="Вы уверены?">
+                      
+                         </div>
 
                     @else
                     <button type="submit" value="{{$advert->id_realty}}" name="comment" class="comment btn btn-primary"> Добавить комментарий</button>
@@ -75,7 +78,9 @@
                    <button type="submit" value="{{$advert->id_realty}}" name="lead" class='leadd btn btn-success'>Обвести</button>
                    <button type="submit" value="{{$advert->id_realty}}" name="link" class='link btn btn-warning'>Поделиться ссылкой</button>
                     <button type="submit" class="delete_advert btn btn-danger" value="{{$advert->id_realty}}" name='delete_advert'> Удалить объявление </button>
-
+                    <div id='dialog-delete' title="Вы уверены?">
+                   
+                     </div>
 
                       @endif
                     

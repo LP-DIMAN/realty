@@ -53,7 +53,7 @@ class RealtorController extends Controller {
 	public function my_adverts()
 	{
 		$realtor = Auth::user()->id;
-		$data['adverts'] = Adverts::where('id_realtor','=',$realtor)->get();
+		$data['adverts'] = Adverts::where('id_realtor','=',$realtor)->orderBy('date','desc')->get();
 		return view('my_adverts',$data);
 	}
 	// Удаление объявлений риэлтора
@@ -61,6 +61,7 @@ class RealtorController extends Controller {
 	{
 		$id_realty = $request->input('delete_my_advert');
 		Adverts::where('id_realty','=',$id_realty)->delete();
+		DB::table('clients2adverts')->where('id_adverts','=',$id_realty);
 	}
 	// Редактирование объявлений риэлтора
 	public function edit_my_advert(Request $request)
